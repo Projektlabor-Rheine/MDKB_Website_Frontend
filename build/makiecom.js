@@ -59,4 +59,4 @@ function genSnakeItem(pos, name){
 </p></div>`
 }
 
-usersUpdate(glusers);
+//usersUpdate(glusers);

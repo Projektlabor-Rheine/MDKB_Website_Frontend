@@ -8,8 +8,12 @@ sock.onopen = function (event) {
 }
 
 sock.onmessage = function (event) {
-    console.log(event.data);
-    console.log(JSON.parse(event.data));
+    msg = JSON.parse(event.data)
+    console.log(msg);
+
+    usersUpdate(msg.data.users)
+
+
 }
 
 

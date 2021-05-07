@@ -1,6 +1,10 @@
 import asyncio
 import websockets
 import time 
+import names
+import json
+import random
+import uuid
 
 async def handler(websocket, path):
     consumer_task = asyncio.ensure_future(consumer_handler(websocket, path))
@@ -26,9 +30,31 @@ async def producer_handler(websocket, path):
         message = await producer()
         await websocket.send(message)
 
+# Sending object
+users_msg = {
+    "typid":11,
+    "data":{
+        "users":[]
+    }
+}
+
+
 async def producer():
-    await asyncio.sleep(1)
-    return '{"hello":"there"}'
+    await asyncio.sleep(5)
+    # Random name generator
+    users_msg = {
+        "typid":11,
+        "data":{
+            "users":[]
+        }
+    }
+    for i in range(0, random.randint(0,20)):
+        users_msg["data"]["users"].append({"name":names.get_full_name(), "uuid": str(uuid.uuid4()), "pos":i})
+
+
+
+
+    return json.dumps(users_msg)
 
 start_server = websockets.serve(handler, "localhost", 8080)
 
