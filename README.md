@@ -5,8 +5,9 @@
 
 ```npm run build```
 
+```pip install websocket```
 
-
+```pip install names```
 
 
 ### Start

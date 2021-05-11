@@ -30,14 +30,6 @@ async def producer_handler(websocket, path):
         message = await producer()
         await websocket.send(message)
 
-# Sending object
-users_msg = {
-    "typid":11,
-    "data":{
-        "users":[]
-    }
-}
-
 
 async def producer():
     await asyncio.sleep(5)

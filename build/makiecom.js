@@ -1,6 +1,18 @@
 
-
+// Nur zum testen
 var glusers = [{name:"Harald der Haarige", uuid:"42", pos:0}, {name:"Hansi Hinterseer", uuid:"452", pos:2}]
+
+
+
+function frontendUpdate(data){
+    if ("users" in data){
+        usersUpdate(data.users);
+    }
+    //USW...
+
+
+}
+
 
 
 
@@ -59,4 +71,7 @@ function genSnakeItem(pos, name){
 </p></div>`
 }
 
-//usersUpdate(glusers);
+
+
+
+

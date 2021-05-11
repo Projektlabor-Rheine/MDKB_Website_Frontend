@@ -8,10 +8,29 @@ sock.onopen = function (event) {
 }
 
 sock.onmessage = function (event) {
-    msg = JSON.parse(event.data)
-    console.log(msg);
+    try {
+        msg = JSON.parse(event.data);
+    } catch (Exception) {
+        console.log("Exception while parsing");
+        return;
+    }
 
-    usersUpdate(msg.data.users)
+    // Alle 10er sind frontendupdates
+    if (msg.typid >= 10 && msg.typid <= 19){
+        frontendUpdate(msg.data)
+        return;
+    }
+
+    switch (msg.typid){
+        case 101:
+            //Driver Lost Connection
+            break;
+
+
+
+    }
+
+    
 
 
 }
