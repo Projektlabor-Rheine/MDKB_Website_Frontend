@@ -7,9 +7,9 @@ const userutils = {
      * Updates all users to the frontend
      * @param {User[]} users
      */
-    _usersUpdate: (users) => {
+    usersUpdate: (users) => {
         // Checks if the received users are valid
-        if (!userutils.usersValid(users))
+        if (!usersValid(users))
             return;
         
         // Gets the queue
@@ -34,26 +34,31 @@ const userutils = {
         let poses = []
         let uuids = []
         
-        for (const element of users) {
-            //All names are strings?
-            if( typeof element.uuid != "string")
-                return false;
-            
-            if (uuids.includes(element.uuid))
-                return false;
-            
-            uuids.push(element.uuid);
-            //All pos are int
-            if (typeof element.pos != "number")
-                return false;
-        
-            if (poses.includes(element.pos))
-                return false;
-        
-            poses.push(element.pos);
-            //All names are string
-            if (typeof element.name != "string")
-                return false;
+        try {
+            for (const element of users) {
+                //All names are strings?
+                if( typeof element.uuid != "string")
+                    return false;
+                
+                if (uuids.includes(element.uuid))
+                    return false;
+                
+                uuids.push(element.uuid);
+                //All pos are int
+                if (typeof element.pos != "number")
+                    return false;
+
+                if (poses.includes(element.pos))
+                    return false;
+
+                poses.push(element.pos);
+                //All names are string
+                if (typeof element.name != "string")
+                    return false;
+            }
+        } catch(e) {
+            console.error(`Exception in _usersValid: {e}`);
+            return false;
         }
 
         return true;
@@ -88,11 +93,85 @@ const userutils = {
     }
 }
 
-/**
- * Call this function, once the user has accepted the cookie-agreement and wants to start the main service (connection etc.)
- */
-function start(){
-    caccon.startConnection();
+
+const achieveutils = {
+
+    achieveUpdate: (achieves) => {
+        if (!achieveutils._achieveValid()){
+            return;
+        }
+
+
+        // Gets the queue
+        var holder = $("#achieveholder");
+
+        // Removes all users
+        holder.empty();
+        
+        for (const achieve of achieves){
+            holder.append(achieveutils._genAchieveItem(achieve.name, achieve.id, achieve.active));
+        }
+
+
+    },
+
+    _achieveValid: (achieves) => {
+        let ids = [];
+        
+        try {
+            for (const element of achieves) {
+                //All ids are strings?
+                if( typeof element.id != "string")
+                    return false;
+                
+                if (ids.includes(element.id))
+                    return false;
+                
+                ids.push(element.id);
+
+                //All names are string
+                if (typeof element.pos != "number")
+                    return false;
+
+                //All active are bools
+                if (typeof element.active != "boolean")
+                    return false;
+            }
+        } catch(e) {
+            console.error(`Exception in achieveValid: {e}`);
+            return false;
+        }
+
+        return true;
+    },
+
+    _genAchieveItem: (name, id, active) => {
+        //HTML Object
+        var wrapper = document.createElement("div");
+        wrapper.classList.add("achieve_item");
+        var img = document.createElement("img");
+        img.classList.add("rounded-md");
+        img.src = "img/rickqr.png";
+        let h4 = document.createElement("h4");
+
+        //Active or not Appending Data
+        if (active) {
+            let a = document.createElement("a");
+            a.textContent = name;
+            a.href = "#";
+            h4.appendChild(a);
+        }else {
+            h4.textContent = name;
+        }
+    
+        // Combines the elements
+        wrapper.appendChild(img);
+        wrapper.appendChild(h4);
+
+        return wrapper;
+    }
+
+
 }
 
 /**
@@ -102,16 +181,30 @@ function start(){
 function onPacketSync(packet) {
     
     // Checks if the packet contains the users
-    if ("users" in data){
-        userutils.usersUpdate(data.users);
+    if ("users" in packet){
+        userutils.usersUpdate(packet.users);
     }
-    // Continue...
+    if ("achievments" in packet){
+        achieveutils.achieveUpdate(packet.achievments)
+    }
+    if ("controller" in packet){
 
+    }
+    if ("profile" in packet){
+
+    }
 }
 
 
 
 
+
+/**
+ * Call this function, once the user has accepted the cookie-agreement and wants to start the main service (connection etc.)
+ */
+function start(){
+    caccon.startConnection();
+}
 
 // Webserver-address
 // TODO: Change to real one

@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.achieve_item {
+    @apply text-center p-8 mx-4;
+    max-width: 16.6666667%;
+}
+
+.achieve_item img {
+    @apply rounded-md;
+}
+
+.achieve_item h4 {
+    @apply text-3xl my-3 text-white;
+}
+
+.achieve_item a {
+    @apply hover:text-black transition duration-200 ease-out;
+}
