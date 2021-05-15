@@ -1,11 +1,3 @@
-
-// Webserver-address
-// TODO: Change to real one
-const url = "ws://localhost/ws/connect";
-
-// Connection to the backend-server
-var caccon = new CACConnection(url,userutils.onPacketSync);
-
 // TODO: Remove. Für Erik: Das hier kann man wie eine art namespace sehen. Soll bei der Orientiertung helfen
 // Contains user-stuff.
 const userutils = {
@@ -41,7 +33,7 @@ const userutils = {
 
         // Inserts the received ones
         for (const element of users)
-            queue.append(genSnakeItem(element.pos, element.name));
+            queue.append(_genSnakeItem(element.pos, element.name));
     },
 
 
@@ -77,6 +69,34 @@ const userutils = {
         }
 
         return true;
+    },
+
+    /**
+     * Generates a new snake-item with the given parameters
+     * @param {Int} pos 
+     * @param {String} name 
+     * @returns {HTMLElement} that contains the fully combined data
+     */
+    _genSnakeItem: (pos, name) => {
+        var wrapper = document.createElement("div");
+        wrapper.classList.add("oneitem bg-blue-200 rounded-md m-2 p-4");
+        var text = document.createElement("p");
+        text.classList.add("text-left");
+        let posElm = document.createElement("span");
+        posElm.classList.add("text-red-700 p-2 text-3xl align-middle");
+        let nameElm = document.createElement("span");
+        nameElm.classList.add("align-middle ml-4 text-xl");
+
+        // Appends the data
+        posElm.textContent = pos;
+        nameElm.textContent = name;
+    
+        // Combines the elements
+        text.appendChild(pos);
+        text.appendChild(name);
+        wrapper.appendChild(text);
+
+        return wrapper;
     }
 }
 
@@ -88,11 +108,9 @@ function start(){
 }
 
 
+// Webserver-address
+// TODO: Change to real one
+const url = "ws://localhost/ws/connect";
 
-function genSnakeItem(pos, name){
-    return `<div class="oneitem bg-blue-200 rounded-md m-2 p-4">\
-<p class="text-left">\
-<span class="text-red-700 p-2 text-3xl align-middle">${pos}.</span>\
-<span class="align-middle ml-4 text-xl">${name}</span>\
-</p></div>`
-}
+// Connection to the backend-server
+var caccon = new CACConnection(url,userutils.onPacketSync);
