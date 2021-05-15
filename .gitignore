@@ -2,4 +2,6 @@ node_modules
 build/tailwind.css
 npm-debug.log
 .env
-.DS_Store
+.DS_Store.idea/
+venv/
+.idea/
