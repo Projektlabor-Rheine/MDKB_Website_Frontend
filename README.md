@@ -13,7 +13,7 @@
 ### Start
 
 Start Dummy Server
-```python src/py_server_dummy.py```
+```python test-stuff/pyserver/py_server_dummy.py```
 
 Open index.html
 ```build/index.html```
