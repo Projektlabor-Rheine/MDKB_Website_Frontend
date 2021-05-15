@@ -1,19 +1,7 @@
-// TODO: Remove. Für Erik: Das hier kann man wie eine art namespace sehen. Soll bei der Orientiertung helfen
+
+
 // Contains user-stuff.
 const userutils = {
-
-    /**
-     * If a game-sync packet get's received
-     * @param {Packet} packet 
-     */
-    onPacketSync: (packet) => {
-        // Checks if the packet contains the users
-        if ("users" in data){
-            userutils.usersUpdate(data.users);
-        }
-        // Continue...
-    },
-
 
     /**
      * Updates all users to the frontend
@@ -107,10 +95,27 @@ function start(){
     caccon.startConnection();
 }
 
+/**
+ * If a game-sync packet get's received
+ * @param {Packet} packet 
+ */
+function onPacketSync(packet) {
+    
+    // Checks if the packet contains the users
+    if ("users" in data){
+        userutils.usersUpdate(data.users);
+    }
+    // Continue...
+
+}
+
+
+
+
 
 // Webserver-address
 // TODO: Change to real one
 const url = "ws://localhost/ws/connect";
 
 // Connection to the backend-server
-var caccon = new CACConnection(url,userutils.onPacketSync);
+var caccon = new CACConnection(url, userutils.onPacketSync);
