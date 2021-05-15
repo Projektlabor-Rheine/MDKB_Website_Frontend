@@ -8,20 +8,23 @@ const userutils = {
      * @param {User[]} users
      */
     usersUpdate: (users) => {
+        console.log(this);
         // Checks if the received users are valid
-        if (!usersValid(users))
+        if (!userutils._usersValid(users))
             return;
+
         
         // Gets the queue
         var queue = $("#snakeholder");
-
+        
         // Removes all users
         queue.empty();
 
+        console.log(users);
 
         // Inserts the received ones
         for (const element of users)
-            queue.append(_genSnakeItem(element.pos, element.name));
+            queue.append(userutils._genSnakeItem(element.pos, element.name));
     },
 
 
@@ -33,6 +36,7 @@ const userutils = {
     _usersValid: (users) => {
         let poses = []
         let uuids = []
+        
         
         try {
             for (const element of users) {
@@ -72,21 +76,21 @@ const userutils = {
      */
     _genSnakeItem: (pos, name) => {
         var wrapper = document.createElement("div");
-        wrapper.classList.add("oneitem bg-blue-200 rounded-md m-2 p-4");
+        wrapper.classList = "oneitem bg-blue-200 rounded-md m-2 p-4";
         var text = document.createElement("p");
-        text.classList.add("text-left");
+        text.classList = "text-left";
         let posElm = document.createElement("span");
-        posElm.classList.add("text-red-700 p-2 text-3xl align-middle");
+        posElm.classList = "text-red-700 p-2 text-3xl align-middle";
         let nameElm = document.createElement("span");
-        nameElm.classList.add("align-middle ml-4 text-xl");
+        nameElm.classList = "align-middle ml-4 text-xl";
 
         // Appends the data
         posElm.textContent = pos;
         nameElm.textContent = name;
     
         // Combines the elements
-        text.appendChild(pos);
-        text.appendChild(name);
+        text.appendChild(posElm);
+        text.appendChild(nameElm);
         wrapper.appendChild(text);
 
         return wrapper;
@@ -179,9 +183,11 @@ const achieveutils = {
  * @param {Packet} packet 
  */
 function onPacketSync(packet) {
+
     
     // Checks if the packet contains the users
     if ("users" in packet){
+        
         userutils.usersUpdate(packet.users);
     }
     if ("achievments" in packet){
@@ -208,7 +214,10 @@ function start(){
 
 // Webserver-address
 // TODO: Change to real one
-const url = "ws://localhost/ws/connect";
+const url = "ws://localhost:8080";
 
 // Connection to the backend-server
-var caccon = new CACConnection(url, userutils.onPacketSync);
+var caccon = new CACConnection(url, onPacketSync);
+
+
+start();

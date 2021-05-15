@@ -18,3 +18,12 @@
 .achieve_item a {
     @apply hover:text-black transition duration-200 ease-out;
 }
+
+#meet {
+    width: 60vw;
+    height: 33.75vw;
+    position: relative;
+}
+#meet iframe {
+    @apply absolute top-0 left-0;
+}

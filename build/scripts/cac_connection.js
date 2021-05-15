@@ -24,7 +24,7 @@ class CACConnection{
      */
     _onConnect(_){
         // TODO: Debug, remove
-        this.socket.send("Here's some text that the server is urgently awaiting!");
+        this.send("Here's some text that the server is urgently awaiting!");
     }
 
     /**
@@ -42,7 +42,7 @@ class CACConnection{
     /**
      * Event handler for the packet-receive event
      */
-    _onPacketReceived(evt){
+    _onPacketReceived(evt) {
         try {
             // Parses the packet
             var pkt = JSON.parse(evt.data);
@@ -50,7 +50,7 @@ class CACConnection{
             // Checks if the packet is a game-sync packet (Init, achievement, controller or players)
             if (pkt.id >= 10 && pkt.id <= 19){
                 // Execute the callback
-                this.onGameSync(pkt.data);
+                caccon.onGameSync(pkt.data); //ARSCH SO aber this geht nich
                 return;
             }
     
@@ -59,8 +59,9 @@ class CACConnection{
                 case 0:
                     break;
             }
-        } catch (Exception) {
+        } catch (e) {
             // Log
+            console.error(evt);
             console.log("Exception while parsing packet. Ignoring...");
             return;
         }

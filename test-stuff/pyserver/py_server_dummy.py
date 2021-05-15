@@ -35,7 +35,7 @@ async def producer():
     await asyncio.sleep(5)
     # Random name generator
     users_msg = {
-        "typid":11,
+        "id":11,
         "data":{
             "users":[]
         }
