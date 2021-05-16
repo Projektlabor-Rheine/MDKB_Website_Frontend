@@ -1,5 +1,9 @@
 
 
+//Global Vars
+var countdowntimer;
+
+
 // Contains user-stuff.
 const userutils = {
 
@@ -22,7 +26,20 @@ const userutils = {
 
         // Inserts the received ones
         for (const element of users)
-            queue.append(userutils._genSnakeItem(element.pos, element.name));
+            queue.append(userutils._genSnakeItem(element.pos, element.name, element.uuid));
+    },
+
+
+    isUuidValid: (uuid) => {
+        var queue = $("#snakeholder");
+
+        for(element of queue.children()){
+            if(element.getAttribute("data-uuid") == uuid)
+                return true;
+        }
+
+        return false;
+
     },
 
 
@@ -72,7 +89,7 @@ const userutils = {
      * @param {String} name 
      * @returns {HTMLElement} that contains the fully combined data
      */
-    _genSnakeItem: (pos, name) => {
+    _genSnakeItem: (pos, name, uuid) => {
         var wrapper = document.createElement("div");
         wrapper.classList = "oneitem bg-blue-200 rounded-md m-2 p-4";
         var text = document.createElement("p");
@@ -85,6 +102,9 @@ const userutils = {
         // Appends the data
         posElm.textContent = pos;
         nameElm.textContent = name;
+        //Append UUID
+        wrapper.setAttribute("data-UUID", uuid);
+
     
         // Combines the elements
         text.appendChild(posElm);
@@ -118,7 +138,6 @@ const achieveutils = {
     },
 
     _achieveValid: (achieves) => {
-        console.log(achieves);
         let ids = [];
         
         try {
@@ -178,6 +197,64 @@ const achieveutils = {
 
 }
 
+const controllerutils = {
+
+    playtime: 3000*60,
+
+    controllerUpdate: (controller) => {
+        
+        //Valid check
+        if(!controllerutils._controllerValid(controller))
+            return
+        
+        //Changes lol
+        let conttime = $("#controllertime");
+        console.log(controller);
+        conttime.text(controllerutils._timeItem(controller.time));
+        
+        
+        //Start counter
+        clearInterval(countdowntimer);
+        countdowntimer = setInterval(controllerutils._countdown, 1000, controller.time);
+        
+
+    },
+
+    _controllerValid: (controller) => {
+        
+        try {
+            //uuid is string
+            if( typeof controller.uuid != "string")
+                return false;
+            
+            //time is number
+            if (typeof controller.time != "number")
+                return false;
+
+            //Is uuid valid
+            if (!userutils.isUuidValid(controller.uuid))
+                return false;
+            
+        } catch(e) {
+            console.error(`Exception in achieveValid: ${e}`);
+            return false;
+        }
+
+        return true;
+    },
+
+    _timeItem: (starttime) => {
+        timeleft = new Date(starttime + controllerutils.playtime - Date.now());
+        
+        return `${timeleft.getMinutes()} min ${timeleft.getSeconds()} s`;
+    },
+
+    _countdown: (starttime) => {
+        $("#controllertime").text(controllerutils._timeItem(starttime));
+    } 
+
+}
+
 /**
  * If a game-sync packet get's received
  * @param {Packet} packet 
@@ -187,14 +264,13 @@ function onPacketSync(packet) {
     
     // Checks if the packet contains the users
     if ("users" in packet){
-        
         userutils.usersUpdate(packet.users);
     }
     if ("achievements" in packet){
-        achieveutils.achieveUpdate(packet.achievements)
+        achieveutils.achieveUpdate(packet.achievements);
     }
-    if ("controller" in packet){
-
+    if ("controller" in packet){ // Has to be executed after users
+        controllerutils.controllerUpdate(packet.controller);
     }
     if ("profile" in packet){
 

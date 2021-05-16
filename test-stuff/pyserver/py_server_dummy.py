@@ -38,7 +38,11 @@ async def producer():
         "id":10,
         "data":{
             "users":[],
-            "achievements":[]
+            "achievements":[],
+            "controller": {
+                "time": 0,
+                "uuid": "harlad"
+            }
         }
     }
     for i in range(0, random.randint(0,20)):
@@ -46,6 +50,10 @@ async def producer():
 
     for i in range(0, random.randint(0, 10)):
         msg["data"]["achievements"].append({"name":names.get_full_name(), "id": str(uuid.uuid4()), "active":random.choice([True, False])})
+
+    msg["data"]["controller"]["time"] = round(time.time()*1000) - random.randint(0, 3000* 60)
+
+    msg["data"]["controller"]["uuid"] = msg["data"]["users"][0]["uuid"]
 
 
 
