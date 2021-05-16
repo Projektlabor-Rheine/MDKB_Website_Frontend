@@ -3,6 +3,9 @@
 //Global Vars
 var countdowntimer;
 
+var mName;
+var mUuid;
+var mPos;
 
 // Contains user-stuff.
 const userutils = {
@@ -255,13 +258,73 @@ const controllerutils = {
 
 }
 
+const profileutils = {
+
+
+    userUpdate: (user) => {
+        // Checks if the received users are valid
+        if (!profileutils._userValid(user))
+            return;
+        
+        // Gets the queue
+        var queue = $("#snakeholder");
+        
+        //Color profile
+        for (snakeitem of queue.children()){
+            if(snakeitem.getAttribute("data-uuid") == user.uuid){
+                snakeitem.classList.add("bg-ats-green");
+            }
+        }
+
+        mUuid = user.uuid;
+        mName = user.name;
+        mPos = user.pos;
+
+    },
+
+
+    /**
+     * Checks if the received users are valid
+     * @param {User[]} users 
+     * @returns true/false if the received users are valid
+     */
+    _userValid: (user) => {
+        
+        try {
+            //uuid is string
+            if( typeof user.uuid != "string")
+                return false;
+
+            //uuid valid
+            if(!userutils.isUuidValid(user.uuid))
+                return false
+            
+            //pos is int
+            if (typeof user.pos != "number")
+                return false;
+
+            //name is string
+            if (typeof user.name != "string")
+                return false;
+            
+        } catch(e) {
+            console.error(`Exception in _userValid: {e}`);
+            return false;
+        }
+
+        return true;
+    },
+
+
+
+}
+
 /**
  * If a game-sync packet get's received
  * @param {Packet} packet 
  */
 function onPacketSync(packet) {
 
-    
     // Checks if the packet contains the users
     if ("users" in packet){
         userutils.usersUpdate(packet.users);
@@ -272,8 +335,8 @@ function onPacketSync(packet) {
     if ("controller" in packet){ // Has to be executed after users
         controllerutils.controllerUpdate(packet.controller);
     }
-    if ("profile" in packet){
-
+    if ("profile" in packet){ // Has to be executed after users
+        profileutils.userUpdate(packet.profile);
     }
 }
 

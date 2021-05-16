@@ -42,7 +42,8 @@ async def producer():
             "controller": {
                 "time": 0,
                 "uuid": "harlad"
-            }
+            },
+            "profile": {}
         }
     }
     for i in range(0, random.randint(0,20)):
@@ -55,7 +56,7 @@ async def producer():
 
     msg["data"]["controller"]["uuid"] = msg["data"]["users"][0]["uuid"]
 
-
+    msg["data"]["profile"] = msg["data"]["users"][random.randint(0, len(msg["data"]["users"])-1)]
 
 
     return json.dumps(msg)
