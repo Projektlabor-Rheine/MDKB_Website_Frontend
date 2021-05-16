@@ -14,9 +14,9 @@ class CACConnection{
      */
     startConnection(){
         this.socket = new WebSocket(this.url);
-        this.socket.onopen = this._onConnect;
-        this.socket.onclose = this._onDisconnect;
-        this.socket.onmessage = this._onPacketReceived;
+        this.socket.onopen = (evt) => this._onConnect(evt);
+        this.socket.onclose = (evt) => this._onDisconnect(evt);
+        this.socket.onmessage = (evt) => this._onPacketReceived(evt);
     }
 
     /**
@@ -24,7 +24,7 @@ class CACConnection{
      */
     _onConnect(_){
         // TODO: Debug, remove
-        this.send("Here's some text that the server is urgently awaiting!");
+        this.socket.send("Here's some text that the server is urgently awaiting!");
     }
 
     /**
@@ -50,7 +50,7 @@ class CACConnection{
             // Checks if the packet is a game-sync packet (Init, achievement, controller or players)
             if (pkt.id >= 10 && pkt.id <= 19){
                 // Execute the callback
-                caccon.onGameSync(pkt.data); //ARSCH SO aber this geht nich
+                this.onGameSync(pkt.data);
                 return;
             }
     
@@ -61,7 +61,7 @@ class CACConnection{
             }
         } catch (e) {
             // Log
-            console.error(evt);
+            console.error(e);
             console.log("Exception while parsing packet. Ignoring...");
             return;
         }

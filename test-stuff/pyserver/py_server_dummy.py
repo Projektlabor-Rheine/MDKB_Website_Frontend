@@ -34,19 +34,23 @@ async def producer_handler(websocket, path):
 async def producer():
     await asyncio.sleep(5)
     # Random name generator
-    users_msg = {
-        "id":11,
+    msg = {
+        "id":10,
         "data":{
-            "users":[]
+            "users":[],
+            "achievements":[]
         }
     }
     for i in range(0, random.randint(0,20)):
-        users_msg["data"]["users"].append({"name":names.get_full_name(), "uuid": str(uuid.uuid4()), "pos":i})
+        msg["data"]["users"].append({"name":names.get_full_name(), "uuid": str(uuid.uuid4()), "pos":i})
+
+    for i in range(0, random.randint(0, 10)):
+        msg["data"]["achievements"].append({"name":names.get_full_name(), "id": str(uuid.uuid4()), "active":random.choice([True, False])})
 
 
 
 
-    return json.dumps(users_msg)
+    return json.dumps(msg)
 
 start_server = websockets.serve(handler, "localhost", 8080)
 

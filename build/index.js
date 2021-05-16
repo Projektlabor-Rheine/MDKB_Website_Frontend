@@ -8,7 +8,6 @@ const userutils = {
      * @param {User[]} users
      */
     usersUpdate: (users) => {
-        console.log(this);
         // Checks if the received users are valid
         if (!userutils._usersValid(users))
             return;
@@ -20,7 +19,6 @@ const userutils = {
         // Removes all users
         queue.empty();
 
-        console.log(users);
 
         // Inserts the received ones
         for (const element of users)
@@ -101,7 +99,7 @@ const userutils = {
 const achieveutils = {
 
     achieveUpdate: (achieves) => {
-        if (!achieveutils._achieveValid()){
+        if (!achieveutils._achieveValid(achieves)){
             return;
         }
 
@@ -120,6 +118,7 @@ const achieveutils = {
     },
 
     _achieveValid: (achieves) => {
+        console.log(achieves);
         let ids = [];
         
         try {
@@ -134,7 +133,7 @@ const achieveutils = {
                 ids.push(element.id);
 
                 //All names are string
-                if (typeof element.pos != "number")
+                if (typeof element.name != "string")
                     return false;
 
                 //All active are bools
@@ -142,7 +141,7 @@ const achieveutils = {
                     return false;
             }
         } catch(e) {
-            console.error(`Exception in achieveValid: {e}`);
+            console.error(`Exception in achieveValid: ${e}`);
             return false;
         }
 
@@ -166,6 +165,7 @@ const achieveutils = {
             h4.appendChild(a);
         }else {
             h4.textContent = name;
+            wrapper.classList.add("opacity-50");
         }
     
         // Combines the elements
@@ -190,8 +190,8 @@ function onPacketSync(packet) {
         
         userutils.usersUpdate(packet.users);
     }
-    if ("achievments" in packet){
-        achieveutils.achieveUpdate(packet.achievments)
+    if ("achievements" in packet){
+        achieveutils.achieveUpdate(packet.achievements)
     }
     if ("controller" in packet){
 

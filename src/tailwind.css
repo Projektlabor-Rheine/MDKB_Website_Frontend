@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .achieve_item {
     @apply text-center p-8 mx-4;
-    max-width: 16.6666667%;
+    min-width: 12%;
 }
 
 .achieve_item img {
