@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scroll-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scroll-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.achieve_item {
+    @apply text-center p-8 mx-4;
+    min-width: 12%;
+}
+
+.achieve_item img {
+    @apply rounded-md;
+}
+
+.achieve_item h4 {
+    @apply text-3xl my-3 text-white;
+}
+
+.achieve_item a {
+    @apply hover:text-black transition duration-200 ease-out;
+}
+
+#meet {
+    width: 60vw;
+    height: 33.75vw;
+    position: relative;
+}
+#meet iframe {
+    @apply absolute top-0 left-0;
+}
