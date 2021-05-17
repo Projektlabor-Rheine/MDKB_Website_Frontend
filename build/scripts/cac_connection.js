@@ -4,9 +4,10 @@ class CACConnection{
      * 
      * @param {String} url the url of the access-point on the cac-server 
      */
-    constructor(url,onGameSync){
+    constructor(url,onGameSync, onEventHandler){
         this.url = url;
         this.onGameSync = onGameSync;
+        this.onEventHandler = onEventHandler;
     }
 
     /**
@@ -50,11 +51,17 @@ class CACConnection{
             // Checks if the packet is a game-sync packet (Init, achievement, controller or players)
             if (pkt.id >= 10 && pkt.id <= 19){
                 // Execute the callback
-                this.onGameSync(pkt.data);
+                this.onGameSync(pkt);
+                return;
+            }
+
+            // Checks for an Event Package
+            if (pkt.id >= 100 && pkt.id <= 200){
+                this.onEventHandler(pkt);
                 return;
             }
     
-            // Checks the exact packet-id
+            // Checks the exact packet-id NOT USED YET
             switch (pkt.id){
                 case 0:
                     break;
