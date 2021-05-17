@@ -3,6 +3,12 @@ import {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mP
 
 import {StoplineEvent} from "./scripts/gameevent_handler.js"
 
+
+const eventcalllist = {
+    104: new StoplineEvent(5000),
+}
+
+
 /**
  * If a game-sync packet get's received
  * @param {Packet} packet 
@@ -25,6 +31,11 @@ function onPacketSync(packet) {
 }
 
 
+function onEvent(packet) {
+    if ( packet.typid in eventcalllist)
+        eventcalllist[packet.typid].callEvent(packet.data);
+
+}
 
 
 
@@ -40,7 +51,7 @@ function start(){
 const url = "ws://localhost:8080";
 
 // Connection to the backend-server
-var caccon = new CACConnection(url, onPacketSync);
+var caccon = new CACConnection(url, onPacketSync, onEvent);
 
 
 //start();
@@ -48,6 +59,9 @@ var caccon = new CACConnection(url, onPacketSync);
 
 //Test
 
-let stoplinee = new StoplineEvent(5000);
+//let stoplinee = new StoplineEvent(5000);
 
-stoplinee.callEvent({uuid: "Harald"});
+//stoplinee.callEvent({});
+
+onEvent({typid: 104, data: {uuid: "Harald"}});
+
