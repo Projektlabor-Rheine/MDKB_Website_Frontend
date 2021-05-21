@@ -12,6 +12,16 @@ const eventcalllist = {
     105: new YoureDriver(3000),
 }
 
+const keydecoder = {
+    "w": "w",
+    "a": "a",
+    "s": "s",
+    "d": "d",
+    "ArrowUp": "po",
+    "ArrowDown": "pu",
+    "ArrowRight": "pr",
+    "ArrowLeft": "pl", 
+}
 
 /**
  * If a game-sync packet get's received
@@ -57,7 +67,17 @@ const url = "ws://localhost:8080";
 var caccon = new CACConnection(url, onPacketSync, onEvent);
 
 
-//start();
+start();
+
+//Keyboard input 
+window.addEventListener("keydown", (ev) => {
+    if ( ev.key in keydecoder)
+        caccon.keyboardUpdate(true, keydecoder[ev.key]);
+});
+window.addEventListener("keyup", (ev) => {
+    if ( ev.key in keydecoder)
+        caccon.keyboardUpdate(false, keydecoder[ev.key]);
+});
 
 
 //Test
@@ -66,5 +86,5 @@ var caccon = new CACConnection(url, onPacketSync, onEvent);
 
 //stoplinee.callEvent({});
 
-onEvent({typid: 104, data: {uuid: "Harald"}});
+//onEvent({typid: 104, data: {uuid: "Harald"}});
 

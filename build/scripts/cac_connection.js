@@ -1,5 +1,16 @@
 class CACConnection{
 
+    keyboard = {
+        "w": false,
+        "a": false,
+        "s": false,
+        "d": false,
+        "po": false,
+        "pu": false,
+        "pr": false,
+        "pl": false, 
+    }
+
     /**
      * 
      * @param {String} url the url of the access-point on the cac-server 
@@ -25,7 +36,7 @@ class CACConnection{
      */
     _onConnect(_){
         // TODO: Debug, remove
-        this.socket.send("Here's some text that the server is urgently awaiting!");
+        this.socket.send("Hello there");
     }
 
     /**
@@ -63,7 +74,8 @@ class CACConnection{
     
             // Checks the exact packet-id NOT USED YET
             switch (pkt.id){
-                case 0:
+                case 1:
+                    throw "GeneralKenobiException"
                     break;
             }
         } catch (e) {
@@ -73,5 +85,15 @@ class CACConnection{
             return;
         }
 
+    }
+
+    keyboardUpdate(isdown, key){
+        if(isdown){
+            this.keyboard[key] = true;
+        }else {
+            this.keyboard[key] = false;
+        }
+
+        this.socket.send(JSON.stringify(this.keyboard));
     }
 }

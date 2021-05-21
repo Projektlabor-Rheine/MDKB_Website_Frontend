@@ -23,6 +23,8 @@ async def handler(websocket, path):
 
 async def consumer_handler(websocket, path):
     async for message in websocket:
+        if message == "Hello there":
+            await websocket.send('{"id":1,"data":{"GeneralKenobi":true} }')
         print(message)
 
 async def producer_handler(websocket, path):
