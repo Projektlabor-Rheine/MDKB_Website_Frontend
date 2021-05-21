@@ -1,11 +1,15 @@
 
 import {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos} from "./scripts/gamesync_handler.js";
 
-import {StoplineEvent} from "./scripts/gameevent_handler.js"
+import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver} from "./scripts/gameevent_handler.js"
 
 
 const eventcalllist = {
+    101: new DriverLostConnEvent(),
+    102: new DriverRemove(),
+    103: new DriverRejoin(3000),
     104: new StoplineEvent(5000),
+    105: new YoureDriver(3000),
 }
 
 
@@ -34,7 +38,6 @@ function onPacketSync(packet) {
 function onEvent(packet) {
     if ( packet.typid in eventcalllist)
         eventcalllist[packet.typid].callEvent(packet.data);
-
 }
 
 

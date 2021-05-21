@@ -8,13 +8,23 @@ class Event {
 
     #inlineHolder = "#inlineventholder";
 
-    constructor(timeout){
+    /**
+     * 
+     * @param {number} timeout 
+     * 
+     * timeout < 0 until hidden
+     * timeout = 0 no time
+     * timeout > 0 expected behaviour
+     * 
+     */
+    constructor(timeout, validate){
         if (timeout === null){
             this.timeout = 5000; //Default timeout
         } else {
             this.timeout = timeout;
         }
         this.event_msg = "Abstract lol"
+        this.validate = validate
     }
 
     _isEventValid(data) {
@@ -37,17 +47,18 @@ class Event {
     }
 
     callEvent(data) {
-        if(!this._isEventValid(data)){
+        if(this.validate && !this._isEventValid(data)){
             return;
         }
 
         let inlineHolder = $(this.#inlineHolder);
         inlineHolder.text(this.event_msg);
 
-        this.showEvent();
+        if (this.timeout != 0)
+            this.showEvent();
         
-        
-        this.#timer = setTimeout(() => {this.hideEvent();}, this.timeout);
+        if (this.timeout > 0)
+            this.#timer = setTimeout(() => {this.hideEvent();}, this.timeout);
     }
 
     hideEvent() {
@@ -65,7 +76,7 @@ class Event {
 class StoplineEvent extends Event {
 
     constructor (timeout){
-        super(timeout);
+        super(timeout, true);
         this.event_msg = "Ende Bro, weiter nich ;)";
     }
 
@@ -73,6 +84,43 @@ class StoplineEvent extends Event {
 
 
 
+class DriverLostConnEvent extends Event {
+
+    constructor (){
+        super(-1, true);
+        this.event_msg = "Driver Lost Connection";
+    }
+
+}
+
+class DriverRemove extends Event{
+
+    constructor (){
+        super(0, false);
+        this.event_msg = "";
+    }
+
+    callEvent(data) {
+        this.hideEvent();
+    }
+
+}
+
+class DriverRejoin extends Event {
+    constructor (timeout){
+        super(timeout, true);
+        this.event_msg = "Driver Rejoined";
+    }
+}
+
+class YoureDriver extends Event {
+
+    constructor (timeout){
+        super(timeout, false);
+        this.event_msg = "Du bist jetzt Fahrer!";
+    }
+}
 
 
-export {StoplineEvent}
+
+export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver}
