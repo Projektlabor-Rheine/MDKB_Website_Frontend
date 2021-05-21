@@ -1,8 +1,9 @@
 
-import {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos} from "./scripts/gamesync_handler.js";
+import {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos, keyEnable} from "./scripts/gamesync_handler.js";
 
 import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver} from "./scripts/gameevent_handler.js"
 
+keyEnable = false;
 
 const eventcalllist = {
     101: new DriverLostConnEvent(),
@@ -74,11 +75,11 @@ var caccon = new CACConnection(url, onPacketSync, onEvent);
 
 //Keyboard input 
 window.addEventListener("keydown", (ev) => {
-    if ( ev.key in keydecoder)
+    if ( ev.key in keydecoder && keyEnable)
         caccon.keyboardUpdate(true, keydecoder[ev.key]);
 });
 window.addEventListener("keyup", (ev) => {
-    if ( ev.key in keydecoder)
+    if ( ev.key in keydecoder && keyEnable)
         caccon.keyboardUpdate(false, keydecoder[ev.key]);
 });
 

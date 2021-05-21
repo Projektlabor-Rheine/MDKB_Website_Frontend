@@ -1,11 +1,14 @@
 
 
+
 //Global Vars
 var countdowntimer;
 
 var mName;
 var mUuid;
 var mPos;
+
+var keyEnable;
 
 // Contains user-stuff.
 const userutils = {
@@ -216,6 +219,14 @@ const controllerutils = {
         
         conttime.text(controllerutils._timeItem(controller.time));
         
+
+        //Enable/Disable Keyboard packages
+        if (mUuid == controller.uuid) {
+            keyEnable = true;
+        }else {
+            keyEnable = false;
+        }
+
         
         //Start counter
         clearInterval(countdowntimer);
@@ -330,4 +341,4 @@ const profileutils = {
 }
 
 
-export {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos}
+export {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos, keyEnable}
