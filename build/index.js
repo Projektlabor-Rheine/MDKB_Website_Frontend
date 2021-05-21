@@ -1,9 +1,10 @@
 
-import {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos, keyEnable} from "./scripts/gamesync_handler.js";
+import {controllerutils, userutils, achieveutils, profileutils} from "./scripts/gamesync_handler.js";
 
 import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver} from "./scripts/gameevent_handler.js"
 
-keyEnable = false;
+// Globel Vars
+var keyEnable = false;
 
 const eventcalllist = {
     101: new DriverLostConnEvent(),
@@ -49,18 +50,19 @@ function onPacketSync(packet) {
     if ("achievements" in packet.data){
         achieveutils.achieveUpdate(packet.data.achievements);
     }
-    if ("controller" in packet.data){ // Has to be executed after users
-        controllerutils.controllerUpdate(packet.data.controller);
-    }
     if ("profile" in packet.data){ // Has to be executed after users
         profileutils.userUpdate(packet.data.profile);
     }
+    if ("controller" in packet.data){ // Has to be executed after users
+        keyEnable = controllerutils.controllerUpdate(packet.data.controller);
+    }
+    
 }
 
 
 function onEvent(packet) {
-    if ( packet.typid in eventcalllist)
-        eventcalllist[packet.typid].callEvent(packet.data);
+    if ( packet.id in eventcalllist)
+        eventcalllist[packet.id].callEvent(packet.data);
 }
 
 

@@ -1,10 +1,15 @@
 import asyncio
 import websockets
-import time 
+import time
 import names
 import json
 import random
 import uuid
+
+users = []
+achievements = []
+controller = dict()
+profilet = []
 
 async def handler(websocket, path):
     consumer_task = asyncio.ensure_future(consumer_handler(websocket, path))
@@ -36,30 +41,50 @@ async def producer_handler(websocket, path):
 async def producer():
     await asyncio.sleep(5)
     # Random name generator
-    msg = {
-        "id":10,
-        "data":{
-            "users":[],
-            "achievements":[],
-            "controller": {
-                "time": 0,
-                "uuid": "harlad"
-            },
-            "profile": {}
+
+    if random.randint(0,1) == 1 or len(users) == 0:
+        print("frontend")
+        users.clear()
+        achievements.clear()
+        controller = dict()
+        profilet.clear()
+
+        msg = {
+            "id":10,
+            "data":{
+                "users":[],
+                "achievements":[],
+                "controller": {
+                    "time": 0,
+                    "uuid": "harlad"
+                },
+                "profile": {}
+            }
         }
-    }
-    for i in range(0, random.randint(0,20)):
-        msg["data"]["users"].append({"name":names.get_full_name(), "uuid": str(uuid.uuid4()), "pos":i})
+        #Appending Users
+        for i in range(0, random.randint(0,20)):
+            users.append({"name":names.get_full_name(), "uuid": str(uuid.uuid4()), "pos":i})
+        msg["data"]["users"] = users
 
-    for i in range(0, random.randint(0, 10)):
-        msg["data"]["achievements"].append({"name":names.get_full_name(), "id": str(uuid.uuid4()), "active":random.choice([True, False])})
+        #Appending Achievements
+        for i in range(0, random.randint(0, 10)):
+            achievements.append({"name":names.get_full_name(), "id": str(uuid.uuid4()), "active":random.choice([True, False])})
+        msg["data"]["achievements"] = achievements
 
-    msg["data"]["controller"]["time"] = round(time.time()*1000) - random.randint(0, 3000* 60)
-
-    msg["data"]["controller"]["uuid"] = msg["data"]["users"][0]["uuid"]
-
-    msg["data"]["profile"] = msg["data"]["users"][random.randint(0, len(msg["data"]["users"])-1)]
-
+        #Setting Controller
+        controller["time"] = round(time.time()*1000) - random.randint(0, 3000* 60)
+        controller["uuid"] = msg["data"]["users"][0]["uuid"]
+        msg["data"]["controller"] = controller
+        
+        #Setting Profile
+        profile = msg["data"]["users"][random.randint(0, len(msg["data"]["users"])-1)]
+        msg["data"]["profile"] = profile
+    else: # Send an Event
+        print("event")
+        msg = {
+            "id": random.randint(101, 105),
+            "data": {"uuid": users[0]["uuid"]}
+        }
 
     return json.dumps(msg)
 

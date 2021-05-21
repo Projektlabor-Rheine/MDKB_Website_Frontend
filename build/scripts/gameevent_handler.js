@@ -47,8 +47,10 @@ class Event {
     }
 
     callEvent(data) {
-        if(this.validate && !this._isEventValid(data)){
-            return;
+        if(this.validate) {
+            if(!this._isEventValid(data)){
+                return;
+            }
         }
 
         let inlineHolder = $(this.#inlineHolder);

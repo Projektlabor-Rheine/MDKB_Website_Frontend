@@ -8,8 +8,6 @@ var mName;
 var mUuid;
 var mPos;
 
-var keyEnable;
-
 // Contains user-stuff.
 const userutils = {
 
@@ -219,12 +217,10 @@ const controllerutils = {
         
         conttime.text(controllerutils._timeItem(controller.time));
         
-
+        let keyEnable = false;
         //Enable/Disable Keyboard packages
         if (mUuid == controller.uuid) {
             keyEnable = true;
-        }else {
-            keyEnable = false;
         }
 
         
@@ -232,6 +228,7 @@ const controllerutils = {
         clearInterval(countdowntimer);
         countdowntimer = setInterval(controllerutils._countdown, 1000, controller.time);
         
+        return keyEnable;
 
     },
 
@@ -341,4 +338,4 @@ const profileutils = {
 }
 
 
-export {controllerutils, userutils, achieveutils, profileutils, mName, mUuid, mPos, keyEnable}
+export {controllerutils, userutils, achieveutils, profileutils}
