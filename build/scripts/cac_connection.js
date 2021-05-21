@@ -24,9 +24,9 @@ class CACConnection{
     /**
      * Starts the connection to the backend-server. Automatically performs restart on disconnect
      */
-    startConnection(){
+    startConnection(uuid){
         this.socket = new WebSocket(this.url);
-        this.socket.onopen = (evt) => this._onConnect(evt);
+        this.socket.onopen = (evt) => this._onConnect(evt, uuid);
         this.socket.onclose = (evt) => this._onDisconnect(evt);
         this.socket.onmessage = (evt) => this._onPacketReceived(evt);
     }
@@ -34,9 +34,13 @@ class CACConnection{
     /**
      * Event handler for the connect event
      */
-    _onConnect(_){
-        // TODO: Debug, remove
-        this.socket.send("Hello there");
+    _onConnect(_, uuid){
+        if (uuid == "") {
+            this.socket.send("Hello there");
+        }else {
+            this.socket.send(this.createPackage(2, {"uuid": uuid}))
+        }
+
     }
 
     /**
@@ -87,6 +91,10 @@ class CACConnection{
 
     }
 
+    createPackage(_id, _data){
+        return JSON.stringify({id: _id, data: _data});
+    }
+
     keyboardUpdate(isdown, key){
         if(isdown){
             this.keyboard[key] = true;
@@ -94,6 +102,6 @@ class CACConnection{
             this.keyboard[key] = false;
         }
 
-        this.socket.send(JSON.stringify(this.keyboard));
+        this.socket.send(this.createPackage(0, this.keyboard));
     }
 }

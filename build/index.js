@@ -23,6 +23,18 @@ const keydecoder = {
     "ArrowLeft": "pl", 
 }
 
+
+function getUUIDCookie(){
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (const cookie of ca) {
+        if(cookie.trim().indexOf("uuid") == 0){
+            return cookie.split("=")[1];
+        }
+    }
+    return "";
+}
+
 /**
  * If a game-sync packet get's received
  * @param {Packet} packet 
@@ -30,16 +42,16 @@ const keydecoder = {
 function onPacketSync(packet) {
 
     // Checks if the packet contains the users
-    if ("users" in packet){
+    if ("users" in packet.data){
         userutils.usersUpdate(packet.data.users);
     }
-    if ("achievements" in packet){
+    if ("achievements" in packet.data){
         achieveutils.achieveUpdate(packet.data.achievements);
     }
-    if ("controller" in packet){ // Has to be executed after users
+    if ("controller" in packet.data){ // Has to be executed after users
         controllerutils.controllerUpdate(packet.data.controller);
     }
-    if ("profile" in packet){ // Has to be executed after users
+    if ("profile" in packet.data){ // Has to be executed after users
         profileutils.userUpdate(packet.data.profile);
     }
 }
@@ -52,12 +64,6 @@ function onEvent(packet) {
 
 
 
-/**
- * Call this function, once the user has accepted the cookie-agreement and wants to start the main service (connection etc.)
- */
-function start(){
-    caccon.startConnection();
-}
 
 // Webserver-address
 // TODO: Change to real one
@@ -65,9 +71,6 @@ const url = "ws://localhost:8080";
 
 // Connection to the backend-server
 var caccon = new CACConnection(url, onPacketSync, onEvent);
-
-
-start();
 
 //Keyboard input 
 window.addEventListener("keydown", (ev) => {
@@ -81,6 +84,7 @@ window.addEventListener("keyup", (ev) => {
 
 
 //Test
+caccon.startConnection(getUUIDCookie());
 
 //let stoplinee = new StoplineEvent(5000);
 

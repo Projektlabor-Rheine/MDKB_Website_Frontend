@@ -213,7 +213,7 @@ const controllerutils = {
         
         //Changes lol
         let conttime = $("#controllertime");
-        console.log(controller);
+        
         conttime.text(controllerutils._timeItem(controller.time));
         
         
@@ -248,7 +248,7 @@ const controllerutils = {
     },
 
     _timeItem: (starttime) => {
-        timeleft = new Date(starttime + controllerutils.playtime - Date.now());
+        let timeleft = new Date(starttime + controllerutils.playtime - Date.now());
         
         return `${timeleft.getMinutes()} min ${timeleft.getSeconds()} s`;
     },
@@ -271,7 +271,7 @@ const profileutils = {
         var queue = $("#snakeholder");
         
         //Color profile
-        for (snakeitem of queue.children()){
+        for (const snakeitem of queue.children()){
             if(snakeitem.getAttribute("data-uuid") == user.uuid){
                 snakeitem.classList.add("bg-ats-green");
             }
@@ -280,6 +280,8 @@ const profileutils = {
         mUuid = user.uuid;
         mName = user.name;
         mPos = user.pos;
+
+        profileutils.setUUIDCookie(user.uuid);
 
     },
 
@@ -316,6 +318,13 @@ const profileutils = {
         return true;
     },
 
+
+    setUUIDCookie: (uuid) => {
+        var d = new Date();
+        d.setTime(d.getTime() + (30*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = "uuid=" + uuid + ";" + expires + ";path=/";
+    }
 
 
 }
