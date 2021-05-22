@@ -24,9 +24,9 @@ class CACConnection{
     /**
      * Starts the connection to the backend-server. Automatically performs restart on disconnect
      */
-    startConnection(uuid){
+    startConnection(){
         this.socket = new WebSocket(this.url);
-        this.socket.onopen = (evt) => this._onConnect(evt, uuid);
+        this.socket.onopen = (evt) => this._onConnect(evt);
         this.socket.onclose = (evt) => this._onDisconnect(evt);
         this.socket.onmessage = (evt) => this._onPacketReceived(evt);
     }
@@ -34,12 +34,12 @@ class CACConnection{
     /**
      * Event handler for the connect event
      */
-    _onConnect(_, uuid){
-        if (uuid == "") {
-            this.socket.send("Hello there");
-        }else {
-            this.socket.send(this.createPackage(2, {"uuid": uuid}))
-        }
+    _onConnect(_){
+        // if (uuid == "") {
+        //     this.socket.send("Hello there");
+        // }else {
+        //     this.socket.send(this.createPackage(2, {"uuid": uuid}))
+        // }
 
     }
 
@@ -47,8 +47,9 @@ class CACConnection{
      * Event handler for the disconnect event
      */
     _onDisconnect(_){
+
         // Restarts the connection
-        this.startConnection();
+        setTimeout(this.startConnection, 2000);
 
         // Log
         console.log("Disconnected");

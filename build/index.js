@@ -43,9 +43,9 @@ function getUUIDCookie(){
  */
 function onPacketSync(packet) {
 
-    // Checks if the packet contains the users
-    if ("users" in packet.data){
-        userutils.usersUpdate(packet.data.users);
+    // Checks if the packet contains the users (Heißt jetzt Players Noah ist schuld)
+    if ("players" in packet.data){
+        userutils.usersUpdate(packet.data.players);
     }
     if ("achievements" in packet.data){
         achieveutils.achieveUpdate(packet.data.achievements);
@@ -68,12 +68,8 @@ function onEvent(packet) {
 
 
 
-// Webserver-address
-// TODO: Change to real one
-const url = "ws://localhost:8080";
-
 // Connection to the backend-server
-var caccon = new CACConnection(url, onPacketSync, onEvent);
+var caccon = new CACConnection(wsserver + "ws/connect", onPacketSync, onEvent);
 
 //Keyboard input 
 window.addEventListener("keydown", (ev) => {

@@ -4,9 +4,9 @@ import {userutils} from "./gamesync_handler.js";
 
 class Event {
 
-    #timer;
+    _timer;
 
-    #inlineHolder = "#inlineventholder";
+    _inlineHolder = "#inlineventholder";
 
     /**
      * 
@@ -53,22 +53,22 @@ class Event {
             }
         }
 
-        let inlineHolder = $(this.#inlineHolder);
+        let inlineHolder = $(this._inlineHolder);
         inlineHolder.text(this.event_msg);
 
         if (this.timeout != 0)
             this.showEvent();
         
         if (this.timeout > 0)
-            this.#timer = setTimeout(() => {this.hideEvent();}, this.timeout);
+            this._timer = setTimeout(() => {this.hideEvent();}, this.timeout);
     }
 
     hideEvent() {
-        $(this.#inlineHolder).animate({opacity: 0}, 200, "swing");
+        $(this._inlineHolder).animate({opacity: 0}, 200, "swing");
     }
 
     showEvent() {
-        $(this.#inlineHolder).animate({opacity: 1}, 200, "swing");
+        $(this._inlineHolder).animate({opacity: 1}, 200, "swing");
     }
 
 }

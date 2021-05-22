@@ -1,5 +1,12 @@
 
 
+// Helper-method to check if a variable is a positive integer
+var isPositiveInt = num => num === parseInt(num,10) && num >= 0;
+// Helper-method to check if a variable is an array
+var isArray = pkt => typeof pkt === "object" && pkt.constructor.name === "Array";
+// Helper-method to check if a variable is an object
+var isObject = pkt => typeof pkt === "object" && pkt.constructor.name === "Object";
+
 
 //Global Vars
 var countdowntimer;
@@ -19,7 +26,6 @@ const userutils = {
         // Checks if the received users are valid
         if (!userutils._usersValid(users))
             return;
-
         
         // Gets the queue
         var queue = $("#snakeholder");
@@ -29,8 +35,16 @@ const userutils = {
 
 
         // Inserts the received ones
-        for (const element of users)
-            queue.append(userutils._genSnakeItem(element.pos, element.name, element.uuid));
+        for (const element of users){
+            let snakeitem = userutils._genSnakeItem(element.pos, element.name, element.uuid, element.color);
+            if (element.uuid == mUuid)
+                snakeitem.classList.add("bg-ats-green");
+            
+            queue.append(snakeitem);
+
+        }
+
+
     },
 
 
@@ -54,38 +68,50 @@ const userutils = {
      * @returns true/false if the received users are valid
      */
     _usersValid: (users) => {
+        if(!isArray(users))
+            return false;
+
         let poses = []
         let uuids = []
         
         
-        try {
-            for (const element of users) {
-                //All names are strings?
-                if( typeof element.uuid != "string")
-                    return false;
-                
-                if (uuids.includes(element.uuid))
-                    return false;
-                
-                uuids.push(element.uuid);
-                //All pos are int
-                if (typeof element.pos != "number")
-                    return false;
+        for (const element of users) {
+            // Calculates if the user is valid
+            // Checks if...
+            let validUser =
+                // UUID is given as a string
+                typeof element.uuid === "string" &&
+                // UUID exists only once
+                !(element.uuid in uuids) &&
+                // Position is given as a number
+                isPositiveInt(element.pos)
+                // Position is only given once
+                !(element.pos in poses) &&
+                // Name is given
+                typeof element.name === "string" &&
+                // Connection status is given
+                typeof element.connected === "boolean" &&
+                // If disconnected, timer is given
+                (!element.connected) ? isPositiveInt(element.timer) : true &&
+                // The color of the player is given
+                isPositiveInt(element.color);
 
-                if (poses.includes(element.pos))
-                    return false;
-
-                poses.push(element.pos);
-                //All names are string
-                if (typeof element.name != "string")
-                    return false;
-            }
-        } catch(e) {
-            console.error(`Exception in _usersValid: ${e}`);
-            return false;
+            // Checks if the user is invalid
+            if(!validUser)
+                return false;
+            
+            // Registers the uuid and position as taken
+            uuids.push(element.uuid);
+            poses.push(element.pos);
         }
-
+        
         return true;
+    },
+
+    _intToHexColor(num){
+        var raw = num.toString(16);
+        raw+="0".repeat(6-raw.length);
+        return raw;
     },
 
     /**
@@ -94,9 +120,10 @@ const userutils = {
      * @param {String} name 
      * @returns {HTMLElement} that contains the fully combined data
      */
-    _genSnakeItem: (pos, name, uuid) => {
+    _genSnakeItem: (pos, name, uuid, color) => {
         var wrapper = document.createElement("div");
         wrapper.classList = "oneitem bg-blue-200 rounded-md m-2 p-4";
+        wrapper.style = "border: 0.2em solid #" + userutils._intToHexColor(color);
         var text = document.createElement("p");
         text.classList = "text-left";
         let posElm = document.createElement("span");
@@ -136,7 +163,7 @@ const achieveutils = {
         holder.empty();
         
         for (const achieve of achieves){
-            holder.append(achieveutils._genAchieveItem(achieve.name, achieve.id, achieve.active));
+            holder.append(achieveutils._genAchieveItem(achieve.name, achieve.id, achieve.active, achieve.code));
         }
 
 
@@ -145,47 +172,47 @@ const achieveutils = {
     _achieveValid: (achieves) => {
         let ids = [];
         
-        try {
-            for (const element of achieves) {
-                //All ids are strings?
-                if( typeof element.id != "string")
-                    return false;
-                
-                if (ids.includes(element.id))
-                    return false;
-                
-                ids.push(element.id);
+        for (const element of achieves) {
+            
+            // If the achievement is valid
+            // Checks if
+            let valid = 
+                // Name is given
+                typeof element.name === "string" &&
+                // Unlock-state is given
+                typeof element.active === "boolean" &&
+                // Id is given
+                isPositiveInt(element.id) && 
+                // Id is not duplicated
+                !(element.id in ids) &&
+                // If active, the code is given
+                (element.active ? (typeof element.code === "string") : true);
 
-                //All names are string
-                if (typeof element.name != "string")
-                    return false;
+            // Checks if the achievement is invalid
+            if(!valid)
+                return false;
 
-                //All active are bools
-                if (typeof element.active != "boolean")
-                    return false;
-            }
-        } catch(e) {
-            console.error(`Exception in achieveValid: ${e}`);
-            return false;
+            // Appends the new id
+            ids.push(element.id);
         }
-
+        
         return true;
     },
 
-    _genAchieveItem: (name, id, active) => {
+    _genAchieveItem: (name, id, active, code) => {
         //HTML Object
         var wrapper = document.createElement("div");
         wrapper.classList.add("achieve_item");
         var img = document.createElement("img");
         img.classList.add("rounded-md");
-        img.src = "img/rickqr.png";
+        img.src = httpserver+`achievements/access/${(active ? code : "default" )}`;
         let h4 = document.createElement("h4");
 
         //Active or not Appending Data
         if (active) {
             let a = document.createElement("a");
             a.textContent = name;
-            a.href = "#";
+            a.href = httpserver+`achievements/unlock/${code}`;
             h4.appendChild(a);
         }else {
             h4.textContent = name;
@@ -234,25 +261,17 @@ const controllerutils = {
 
     _controllerValid: (controller) => {
         
-        try {
-            //uuid is string
-            if( typeof controller.uuid != "string")
-                return false;
-            
-            //time is number
-            if (typeof controller.time != "number")
-                return false;
-
-            //Is uuid valid
-            if (!userutils.isUuidValid(controller.uuid))
-                return false;
-            
-        } catch(e) {
-            console.error(`Exception in achieveValid: ${e}`);
-            return false;
-        }
-
-        return true;
+        // Calculates if the given controller is valid
+        // Checks if...
+        return (
+            // The controller is given given as a valid object
+            isObject(controller) && 
+            // UUID is given as a string
+            typeof controller.uuid === "string" &&
+            // Time is given
+            isPositiveInt(controller.time) &&
+            // UUID exists
+            userutils.isUuidValid(controller.uuid));
     },
 
     _timeItem: (starttime) => {
@@ -301,29 +320,21 @@ const profileutils = {
      */
     _userValid: (user) => {
         
-        try {
-            //uuid is string
-            if( typeof user.uuid != "string")
-                return false;
-
-            //uuid valid
-            if(!userutils.isUuidValid(user.uuid))
-                return false
-            
-            //pos is int
-            if (typeof user.pos != "number")
-                return false;
-
-            //name is string
-            if (typeof user.name != "string")
-                return false;
-            
-        } catch(e) {
-            console.error(`Exception in _userValid: {e}`);
-            return false;
-        }
-
-        return true;
+        // Calculates if the given profile is valid
+        // Checks if...
+        return (
+            // The profile is even given as a valid profile
+            isObject(user) &&
+            // UUID is given
+            typeof user.uuid === "string" &&
+            // UUID is valid
+            userutils.isUuidValid(user.uuid) && 
+            // Position is given
+            isPositiveInt(user.pos) &&
+            // Name is given
+            typeof user.name === "string" &&
+            // Color is given
+            isPositiveInt(user.color));
     },
 
 
@@ -331,7 +342,7 @@ const profileutils = {
         var d = new Date();
         d.setTime(d.getTime() + (30*60*1000));
         var expires = "expires="+ d.toUTCString();
-        document.cookie = "uuid=" + uuid + ";" + expires + ";path=/";
+        document.cookie = "session=" + uuid + ";" + expires + "";
     }
 
 
