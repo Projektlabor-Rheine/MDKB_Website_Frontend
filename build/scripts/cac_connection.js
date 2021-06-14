@@ -41,6 +41,10 @@ class CACConnection{
      * Event handler for the connect event
      */
     _onConnect(_){
+
+        $(this._inlineHolder).animate({opacity: 0}, 200, "swing");
+
+
         // if (uuid == "") {
         //     this.socket.send("Hello there");
         // }else {
