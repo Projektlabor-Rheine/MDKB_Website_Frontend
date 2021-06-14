@@ -3,7 +3,7 @@ import {controllerutils, userutils, achieveutils, profileutils, clearTimer} from
 
 import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, stopTimer} from "./scripts/gameevent_handler.js"
 
-stopTimer = clearTimer
+stopTimer(clearTimer);
 
 // Globel Vars
 var keyEnable = false;

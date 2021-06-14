@@ -1,8 +1,12 @@
 
 import {userutils} from "./gamesync_handler.js";
 
+let stopTimer = 0;
 
-let stopTimer = undefined;
+function setTimer(timer){
+    stopTimer = timer;
+}
+
 
 class Event {
 
@@ -134,4 +138,4 @@ class YoureDriver extends Event {
 
 
 
-export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver, stopTimer}
+export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver, setTimer}
