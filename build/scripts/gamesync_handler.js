@@ -276,11 +276,12 @@ const controllerutils = {
     },
 
     _timeItem: (starttime) => {
-        //Berechnet die Zeit die noch verbleibt bis es einen Controllerwechesel gibt 
-        let timeleft = new Date(starttime - Date.now());
+        //Berechnet die Zeit die noch verbleibt bis es einen Controllerwechesel gibt
+        let unixtimeleft = starttime - Date.now()
+        let timeleft = new Date(unixtimeleft);
         
         // Clamp
-        if (timeleft.getMinutes() == 0 && timeleft.getSeconds() == 0){
+        if (unixtimeleft <= 0){
             //Timer stoppen
             clearInterval(countdowntimer);
             return "0 min 0 s";

@@ -42,7 +42,7 @@ class CACConnection{
      */
     _onConnect(_){
 
-        $(this._inlineHolder).animate({opacity: 0}, 200, "swing");
+        $("#inlineventholder").animate({opacity: 0}, 200, "swing");
 
 
         // if (uuid == "") {
