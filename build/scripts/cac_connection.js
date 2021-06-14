@@ -25,10 +25,16 @@ class CACConnection{
      * Starts the connection to the backend-server. Automatically performs restart on disconnect
      */
     startConnection(){
-        this.socket = new WebSocket(this.url);
-        this.socket.onopen = (evt) => this._onConnect(evt);
-        this.socket.onclose = (evt) => this._onDisconnect(evt);
-        this.socket.onmessage = (evt) => this._onPacketReceived(evt);
+        console.log("Starting to connect...");
+        try {
+            this.socket = new WebSocket(this.url);
+            this.socket.onopen = (evt) => this._onConnect(evt);
+            this.socket.onclose = (evt) => this._onDisconnect(evt);
+            this.socket.onmessage = (evt) => this._onPacketReceived(evt);
+            
+        } catch(e){
+            console.log("Error: "+e);
+        }
     }
 
     /**
@@ -49,7 +55,7 @@ class CACConnection{
     _onDisconnect(_){
 
         // Restarts the connection
-        setTimeout(this.startConnection, 2000);
+        setTimeout(this.startConnection.bind(this), 2000);
 
         // Log
         console.log("Disconnected");
