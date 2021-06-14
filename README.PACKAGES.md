@@ -73,7 +73,7 @@ Im folgenden
 
 
 0: Keyboard update
-{"a": true, "s":true ...}
+{"a": true, "s":true, "up":false ...}
 
 2: UUID Welcome
 {

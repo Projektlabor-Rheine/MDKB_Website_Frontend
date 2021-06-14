@@ -231,7 +231,7 @@ const achieveutils = {
 
 const controllerutils = {
 
-    playtime: 3000*60,
+    //playtime: 3000*60,
 
     controllerUpdate: (controller) => {
         
@@ -275,7 +275,13 @@ const controllerutils = {
     },
 
     _timeItem: (starttime) => {
-        let timeleft = new Date(starttime + controllerutils.playtime - Date.now());
+        //Berechnet die Zeit die noch verbleibt bis es einen Controllerwechesel gibt 
+        let timeleft = new Date(starttime - Date.now());
+        
+        // Clamp
+        if (timeleft.getMinutes() == 0 && timeleft.getSeconds() == 0){
+            return "0 min 0 s";
+        }
         
         return `${timeleft.getMinutes()} min ${timeleft.getSeconds()} s`;
     },

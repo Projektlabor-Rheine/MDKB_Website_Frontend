@@ -5,10 +5,10 @@ class CACConnection{
         "a": false,
         "s": false,
         "d": false,
-        "po": false,
-        "pu": false,
-        "pr": false,
-        "pl": false, 
+        "up": false,
+        "down": false,
+        "right": false,
+        "left": false, 
     }
 
     /**

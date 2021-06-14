@@ -19,10 +19,10 @@ const keydecoder = {
     "a": "a",
     "s": "s",
     "d": "d",
-    "ArrowUp": "po",
-    "ArrowDown": "pu",
-    "ArrowRight": "pr",
-    "ArrowLeft": "pl", 
+    "ArrowUp": "up",
+    "ArrowDown": "down",
+    "ArrowRight": "right",
+    "ArrowLeft": "left", 
 }
 
 
@@ -73,11 +73,11 @@ var caccon = new CACConnection(wsserver + "ws/connect", onPacketSync, onEvent);
 
 //Keyboard input 
 window.addEventListener("keydown", (ev) => {
-    if ( ev.key in keydecoder && keyEnable)
+    if ( ev.key in keydecoder && keyEnable && !ev.repeat)
         caccon.keyboardUpdate(true, keydecoder[ev.key]);
 });
 window.addEventListener("keyup", (ev) => {
-    if ( ev.key in keydecoder && keyEnable)
+    if ( ev.key in keydecoder && keyEnable && !ev.repeat)
         caccon.keyboardUpdate(false, keydecoder[ev.key]);
 });
 
