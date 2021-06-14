@@ -281,6 +281,8 @@ const controllerutils = {
         
         // Clamp
         if (timeleft.getMinutes() == 0 && timeleft.getSeconds() == 0){
+            //Timer stoppen
+            clearInterval(countdowntimer);
             return "0 min 0 s";
         }
         
@@ -355,5 +357,9 @@ const profileutils = {
 
 }
 
+function clearTimer(){
+    clearInterval(countdowntimer);
+}
 
-export {controllerutils, userutils, achieveutils, profileutils}
+
+export {controllerutils, userutils, achieveutils, profileutils, clearTimer}

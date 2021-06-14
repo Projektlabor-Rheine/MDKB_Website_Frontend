@@ -22,13 +22,15 @@ const options = {
 
     }
 };
-// const api = new JitsiMeetExternalAPI(domain, options);
 
-// api.addListener("videoConferenceJoined", videoJoined);
+
+const api = new JitsiMeetExternalAPI(domain, options);
+
+api.addListener("videoConferenceJoined", videoJoined);
 
 
 function videoJoined(event){
-    //console.log("Video Joined");
+    console.log("Video Joined");
 
     partis = api.getParticipantsInfo();
 

@@ -1,10 +1,13 @@
 
-import {controllerutils, userutils, achieveutils, profileutils} from "./scripts/gamesync_handler.js";
+import {controllerutils, userutils, achieveutils, profileutils, clearTimer} from "./scripts/gamesync_handler.js";
 
-import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver} from "./scripts/gameevent_handler.js"
+import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, stopTimer} from "./scripts/gameevent_handler.js"
+
+stopTimer = clearTimer
 
 // Globel Vars
 var keyEnable = false;
+var rpiconnected = false;
 
 const eventcalllist = {
     101: new DriverLostConnEvent(),
@@ -56,8 +59,13 @@ function onPacketSync(packet) {
     if ("controller" in packet.data){ // Has to be executed after users
         keyEnable = controllerutils.controllerUpdate(packet.data.controller);
     }
+    if ("rpistatus" in packet.data) {
+        rpiconnected = packet.data.rpistatus;
+    }
     
 }
+
+
 
 
 function onEvent(packet) {

@@ -2,6 +2,8 @@
 import {userutils} from "./gamesync_handler.js";
 
 
+let stopTimer = undefined;
+
 class Event {
 
     _timer;
@@ -93,6 +95,11 @@ class DriverLostConnEvent extends Event {
         this.event_msg = "Driver Lost Connection";
     }
 
+    callEvent(data) {
+        stopTimer();
+        super.callEvent(data);
+    }
+
 }
 
 class DriverRemove extends Event{
@@ -127,4 +134,4 @@ class YoureDriver extends Event {
 
 
 
-export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver}
+export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver, stopTimer}
