@@ -213,6 +213,7 @@ const achieveutils = {
             let a = document.createElement("a");
             a.textContent = name;
             a.href = httpserver+`achievements/unlock/${code}`;
+            a.target = "_blank";
             h4.appendChild(a);
         }else {
             h4.textContent = name;
