@@ -1,9 +1,9 @@
 
-import {controllerutils, userutils, achieveutils, profileutils, clearTimer} from "./scripts/gamesync_handler.js";
+import {controllerutils, userutils, achieveutils, profileutils, countdowntimer} from "./scripts/gamesync_handler.js";
 
-import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, stopTimer} from "./scripts/gameevent_handler.js"
+import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, setTimer} from "./scripts/gameevent_handler.js"
 
-stopTimer(clearTimer);
+setTimer(countdowntimer);
 
 // Globel Vars
 var keyEnable = false;

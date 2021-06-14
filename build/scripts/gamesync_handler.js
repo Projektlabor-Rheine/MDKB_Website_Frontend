@@ -357,9 +357,5 @@ const profileutils = {
 
 }
 
-function clearTimer(){
-    clearInterval(countdowntimer);
-}
 
-
-export {controllerutils, userutils, achieveutils, profileutils, clearTimer}
+export {controllerutils, userutils, achieveutils, profileutils, countdowntimer}

@@ -100,7 +100,7 @@ class DriverLostConnEvent extends Event {
     }
 
     callEvent(data) {
-        stopTimer();
+        clearInterval(stopTimer);
         super.callEvent(data);
     }
 

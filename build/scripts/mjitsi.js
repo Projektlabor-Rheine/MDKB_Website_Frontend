@@ -32,7 +32,7 @@ api.addListener("videoConferenceJoined", videoJoined);
 function videoJoined(event){
     console.log("Video Joined");
 
-    partis = api.getParticipantsInfo();
+    let partis = api.getParticipantsInfo();
 
     for (const user of partis) {
         if (user.displayName == "Reinhold Messner"){
