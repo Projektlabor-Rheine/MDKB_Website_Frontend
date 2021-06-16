@@ -10,6 +10,7 @@ var isObject = pkt => typeof pkt === "object" && pkt.constructor.name === "Objec
 
 //Global Vars
 var countdowntimer;
+var countdowntime;
 
 var mName;
 var mUuid;
@@ -253,8 +254,7 @@ const controllerutils = {
 
         
         //Start counter
-        clearInterval(countdowntimer);
-        countdowntimer = setInterval(controllerutils._countdown, 1000, controller.time);
+        countdowntime = controller.time;
         
         return keyEnable;
 
@@ -292,7 +292,16 @@ const controllerutils = {
 
     _countdown: (starttime) => {
         $("#controllertime").text(controllerutils._timeItem(starttime));
-    } 
+    },
+
+    startCountdown: () => {
+        clearInterval(countdowntimer);
+        countdowntimer = setInterval(controllerutils._countdown, 1000, countdowntime);
+    },
+
+    stopCountdown: () => {
+        clearInterval(countdowntimer);
+    }
 
 }
 

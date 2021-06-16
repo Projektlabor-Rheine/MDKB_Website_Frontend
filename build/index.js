@@ -1,9 +1,11 @@
 
 import {controllerutils, userutils, achieveutils, profileutils, countdowntimer} from "./scripts/gamesync_handler.js";
 
-import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, setTimer} from "./scripts/gameevent_handler.js"
+import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, onPiConnectedEvent, onPiDisconnectedEvent, setTimer} from "./scripts/gameevent_handler.js"
 
-setTimer(countdowntimer);
+
+//Backwards method
+setTimer(countdowntimer); // Countdowntimer for eventhandler
 
 // Globel Vars
 var keyEnable = false;
@@ -15,6 +17,8 @@ const eventcalllist = {
     103: new DriverRejoin(3000),
     104: new StoplineEvent(5000),
     105: new YoureDriver(3000),
+    106: new onPiConnectedEvent(1000),
+    107: new onPiDisconnectedEvent(3000),
 }
 
 const keydecoder = {
@@ -60,19 +64,37 @@ function onPacketSync(packet) {
         keyEnable = controllerutils.controllerUpdate(packet.data.controller);
     }
     if ("rpistatus" in packet.data) {
+        //Raising on PI Conn Methods
+        if(rpiconnected && !packet.data.rpistatus){
+            onPiDisconnected();
+        }else if(!rpiconnected && packet.data.profile){
+            onPiConnected();
+        }
         rpiconnected = packet.data.rpistatus;
     }
     
 }
-
-
-
 
 function onEvent(packet) {
     if ( packet.id in eventcalllist)
         eventcalllist[packet.id].callEvent(packet.data);
 }
 
+
+
+function onPiConnected(){
+    controllerutils.startCountdown();
+    //Connected Event
+    eventcalllist[106].callEvent(undefined);
+
+
+}
+
+function onPiDisconnected(){
+    controllerutils.stopCountdown();
+    //Disconnect Event
+    eventcalllist[107].callEvent(undefined);
+}
 
 
 

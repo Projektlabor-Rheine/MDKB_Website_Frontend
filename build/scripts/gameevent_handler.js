@@ -1,16 +1,18 @@
 
 import {userutils} from "./gamesync_handler.js";
 
-let stopTimer = 0;
+let countdowntimer;
+let eventtimer;
+
 
 function setTimer(timer){
-    stopTimer = timer;
+    countdowntimer = timer;
 }
+
 
 
 class Event {
 
-    _timer;
 
     _inlineHolder = "#inlineventholder";
 
@@ -65,8 +67,11 @@ class Event {
         if (this.timeout != 0)
             this.showEvent();
         
-        if (this.timeout > 0)
-            this._timer = setTimeout(() => {this.hideEvent();}, this.timeout);
+        if (this.timeout > 0){
+            clearTimeout(eventtimer);
+            eventtimer = setTimeout(() => {this.hideEvent();}, this.timeout);
+        }
+            
     }
 
     hideEvent() {
@@ -100,7 +105,7 @@ class DriverLostConnEvent extends Event {
     }
 
     callEvent(data) {
-        clearInterval(stopTimer);
+        clearInterval(countdowntimer);
         super.callEvent(data);
     }
 
@@ -137,5 +142,24 @@ class YoureDriver extends Event {
 }
 
 
+class onPiDisconnectedEvent extends Event {
 
-export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver, setTimer}
+    constructor(timeout){
+        super(timeout, false);
+        this.event_msg = "Makie lost Connection";
+    }
+
+}
+
+class onPiConnectedEvent extends Event {
+
+    constructor(timeout){
+        super(timeout, false);
+        this.event_msg = "Makie regained Connection";
+    }
+
+}
+
+
+
+export {StoplineEvent, DriverLostConnEvent, DriverRemove, DriverRejoin, YoureDriver, onPiConnectedEvent, onPiDisconnectedEvent, setTimer}

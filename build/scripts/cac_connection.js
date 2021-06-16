@@ -41,7 +41,7 @@ class CACConnection{
      * Event handler for the connect event
      */
     _onConnect(_){
-
+        //Disable Lost connection
         $("#inlineventholder").animate({opacity: 0}, 200, "swing");
 
 
@@ -57,6 +57,10 @@ class CACConnection{
      * Event handler for the disconnect event
      */
     _onDisconnect(_){
+
+        //Enable Lost connection
+        //Setting TEXT OTOd
+        $("#inlineventholder").animate({opacity: 1}, 200, "swing");
 
         // Restarts the connection
         setTimeout(this.startConnection.bind(this), 2000);

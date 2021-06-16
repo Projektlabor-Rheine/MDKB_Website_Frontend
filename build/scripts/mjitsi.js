@@ -19,7 +19,7 @@ const options = {
         startWithVideoMuted: true,
         disableProfile: true,
         hideLobbyButton: true,
-
+        disable1On1Mode: null,
     }
 };
 
