@@ -5,16 +5,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="tailwind.css" rel="stylesheet">
-    <link href="ats_site.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src='https://meet.jit.si/external_api.js'></script>
     <script type="text/javascript">
-        const url = "://"+location.host+"/";
+        const url = "://" + location.host + "/";
         const httpserver = `http${url}`;
         const wsserver = `ws${url}`;
     </script>
     <script src="scripts/cac_connection.js"></script>
+
+    <style>
+        * {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -41,7 +48,8 @@
                         <div class="absolute top-0 left-0 z-30"><span class="text-red-700 text-4xl m-12 leading-loose"
                                 id="controllertime">0 min 42s</span></div>
                         <div class="absolute top-0 left-0 w-full h-full z-40 flex flex-col justify-center">
-                            <div class="text-center" id="jitsi_overlay"><span class="text-red-700 font-bold text-7xl leading-loose"
+                            <div class="text-center" id="jitsi_overlay"><span
+                                    class="text-red-700 font-bold text-7xl leading-loose"
                                     id="inlineventholder">Verbindung Lost <br>(┛◉Д◉)┛彡┻━┻</span></div>
                         </div>
                     </div>
@@ -96,7 +104,7 @@
                         <h4><a href="#">Die Kanoone 2</a></h4>
 
                     </div>
-                   
+
 
                     <div class="achieve_item opacity-50">
 
@@ -117,441 +125,42 @@
 
                 <div class="mx-32">
                     <div class="flex flex-row justify-around">
-                        <span class="text-white w-6/12 text-3xl my-auto">
-                            Mit der Tastatur wird gespielt, mit W führt man vorwärts mit D nach rechts, mit A nach links
-                            und mit S rückwärts.
+                        <div class="w-6/12 my-auto">
+                            <p class="text-white  text-3xl my-2">
+                                Mit der Tastatur wird gespielt, mit W führt man vorwärts mit D nach rechts, mit A nach
+                                links
+                                und mit S rückwärts.
+                                Um die Kamera zu bewegen werden die Pfeiltasten verwendet.
+                            </p>
+                            <p class="text-white  text-3xl my-2">
+                                Der erste in der Warteschlange hat die Kontrolle und hat 3 min Zeit Makie den Bot durch
+                                den ARTandTECH.space zu bewegen, dannach wird gewechselt.
+                            </p>
+                            <p class="text-white text-3xl my-2">
+                                Viel spaß beim QR Code suchen!!! :)
 
-                            Um die Kamera zu bewegen werden die Pfeiltasten verwendet.
+                            </p>
+                        </div>
 
-                            Viel spaß beim QR Code suchen!!!
-
-
-
-
-                        </span>
                         <img src="img/schwenn.jpeg" class="w-3/12 m-8">
                     </div>
                     <div class="flex flex-row-reverse justify-around">
                         <p class="text-white w-6/12 text-3xl my-auto">
-                        Im ganzen ARTandTECH.space sind QRCodes verteilt, ihr als community könnt Makie den Killerbot durch den ARTandTECH.space steuern
-                        und QRCodes freischalten.
-                        Hinter jedem QR Code steckt ein Projekt zu dem es auf der Projekseite ein paar nähere informationen gibt.
-                        
-                        
+                            Im ganzen ARTandTECH.space sind QRCodes verteilt, ihr als community könnt Makie den
+                            Killerbot durch den ARTandTECH.space steuern
+                            und QRCodes einscannen.
+                            Hinter jedem QR Code steckt ein Projekt zu dem es auf der Projekseite ein paar nähere
+                            informationen gibt.
+
+
                         </p>
                         <img src="img/johnas.jpeg" class="w-3/12 m-8">
                     </div>
                 </div>
             </div>
 
+            <iframe src="footer.html" class="w-full overflow-hidden" id="footerframe"></iframe>
             
-            <!-- ATS footer -->
-            <footer class="sections bg-gray-800" id="footer-sections" data-footer-sections="" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                <section data-test="page-section" data-section-theme="dark" class="page-section
-                   layout-engine-section
-                   background-width--full-bleed
-                   section-height--small
-                   content-width--wide
-                   horizontal-alignment--center
-                   vertical-alignment--middle
-                   dark" data-section-id="5eb70c780e4d61663ae2c3b4"
-                    data-controller="SectionWrapperController, MagicPaddingController" data-current-styles="{
-                   &quot;imageOverlayOpacity&quot;: 0.15,
-                   &quot;backgroundWidth&quot;: &quot;background-width--full-bleed&quot;,
-                   &quot;sectionHeight&quot;: &quot;section-height--small&quot;,
-                   &quot;customSectionHeight&quot;: 13,
-                   &quot;horizontalAlignment&quot;: &quot;horizontal-alignment--center&quot;,
-                   &quot;verticalAlignment&quot;: &quot;vertical-alignment--middle&quot;,
-                   &quot;contentWidth&quot;: &quot;content-width--wide&quot;,
-                   &quot;sectionTheme&quot;: &quot;dark&quot;,
-                   &quot;sectionAnimation&quot;: &quot;none&quot;,
-                   &quot;backgroundMode&quot;: &quot;image&quot;
-                   }" data-animation="none" id="yui_3_17_2_1_1623681184785_255"
-                    data-controllers-bound="SectionWrapperController, MagicPaddingController" data-active="true">
-                    <div class="section-background"  style="background-color: #2a2829;">
-                    </div>
-                    <div class="content-wrapper" id="yui_3_17_2_1_1623681184785_254">
-                        <div class="content" id="yui_3_17_2_1_1623681184785_253">
-                            <div class="sqs-layout sqs-grid-12 columns-12" data-type="page-section"
-                                id="page-section-5eb70c780e4d61663ae2c3b4">
-                                <div class="row sqs-row" id="yui_3_17_2_1_1623681184785_252">
-                                    <div class="col sqs-col-12 span-12" id="yui_3_17_2_1_1623681184785_251">
-                                        <div class="row sqs-row" id="yui_3_17_2_1_1623681184785_250">
-                                            <div class="col sqs-col-3 span-3" id="yui_3_17_2_1_1623681184785_249">
-                                                <div class="sqs-block image-block sqs-block-image sqs-text-ready"
-                                                    data-block-type="5" id="block-yui_3_17_2_1_1606426729987_10281">
-                                                    <div class="sqs-block-content preSlide slideIn"
-                                                        id="yui_3_17_2_1_1623681184785_248"
-                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.435789s;">
-                                                        <figure
-                                                            class="sqs-block-image-figure image-block-outer-wrapper image-block-v2 design-layout-overlap combination-animation-site-default individual-animation-site-default individual-text-animation-site-default image-position-left sqs-narrow-width animation-loaded"
-                                                            data-scrolled="" data-test="image-block-v2-outer-wrapper"
-                                                            id="yui_3_17_2_1_1623681184785_247">
-                                                            <div class="intrinsic" id="yui_3_17_2_1_1623681184785_246">
-                                                                <div class="image-inset content-fit preSlide slideIn"
-                                                                    data-animation-role="image" data-description=""
-                                                                    id="yui_3_17_2_1_1623681184785_245"
-                                                                    style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.442105s;">
-                                                                    <noscript><img
-                                                                            src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1606475258127-KWOBQ2Y7K7Z9NBBI9618/ke17ZwdGBToddI8pDm48kIP5x8Nbigw-MEfpa3mKFtx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0vHjEwiLWFTQXB0rFqdXHC7YhlkgKF9QSaD3yncjRukpETOZyAW8d1NB4wW9tShq1Q/Logo_ATS_Block_transparent.png"
-                                                                            alt=" - " /></noscript>
-                                                                    <img data-src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1606475258127-KWOBQ2Y7K7Z9NBBI9618/ke17ZwdGBToddI8pDm48kIP5x8Nbigw-MEfpa3mKFtx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0vHjEwiLWFTQXB0rFqdXHC7YhlkgKF9QSaD3yncjRukpETOZyAW8d1NB4wW9tShq1Q/Logo_ATS_Block_transparent.png"
-                                                                        data-image="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1606475258127-KWOBQ2Y7K7Z9NBBI9618/ke17ZwdGBToddI8pDm48kIP5x8Nbigw-MEfpa3mKFtx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0vHjEwiLWFTQXB0rFqdXHC7YhlkgKF9QSaD3yncjRukpETOZyAW8d1NB4wW9tShq1Q/Logo_ATS_Block_transparent.png"
-                                                                        data-image-dimensions="2500x1206"
-                                                                        data-image-focal-point="0.5,0.5"
-                                                                        alt="Logo_ATS_Block_transparent.png"
-                                                                        class="loaded" data-image-resolution="300w"
-                                                                        src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1606475258127-KWOBQ2Y7K7Z9NBBI9618/ke17ZwdGBToddI8pDm48kIP5x8Nbigw-MEfpa3mKFtx7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0vHjEwiLWFTQXB0rFqdXHC7YhlkgKF9QSaD3yncjRukpETOZyAW8d1NB4wW9tShq1Q/Logo_ATS_Block_transparent.png?format=300w"
-                                                                        style="left: 0px; top: 0px; width: 275px; height: 132.66px; position: absolute;"
-                                                                        data-parent-ratio="2.1">
-                                                                    <div class="image-overlay"></div>
-                                                                </div>
-                                                            </div>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                                <div class="sqs-block code-block sqs-block-code" data-block-type="23"
-                                                    id="block-yui_3_17_2_1_1605646405213_9075">
-                                                    <div class="sqs-block-content preSlide slideIn"
-                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.448421s;">
-                                                        <a href="impressum" class="link" tabindex="0">Impressum</a><br>
-                                                        <a href="datenschutz" class="link"
-                                                            tabindex="0">Datenschutz</a><br>
-                                                        <a href="kontakt" class="link" tabindex="0">Kontakt</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col sqs-col-9 span-9">
-                                                <div class="row sqs-row">
-                                                    <div class="col sqs-col-2 span-2">
-                                                        <div class="sqs-block code-block sqs-block-code"
-                                                            data-block-type="23"
-                                                            id="block-yui_3_17_2_1_1606488128422_20691">
-                                                            <div class="sqs-block-content preSlide slideIn"
-                                                                style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.454737s;">
-                                                                <h4 class="footer-h4 preFade fadeIn"
-                                                                    style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.461053s;">
-                                                                    Seiten</h4>
-                                                                <a href="art" class="link" tabindex="0">Art</a><br>
-                                                                <a href="tech" class="link" tabindex="0">Tech</a><br>
-                                                                <a href="ort" class="link" tabindex="0">Ort</a><br>
-                                                                <a href="team" class="link" tabindex="0">Team</a><br>
-                                                                <a href="konzept" class="link"
-                                                                    tabindex="0">Konzept</a><br>
-                                                                <a href="news" class="link" tabindex="0">News</a><br>
-                                                                <a href="kontakt" class="link"
-                                                                    tabindex="0">Kontakt</a><br>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col sqs-col-7 span-7">
-                                                        <div class="row sqs-row">
-                                                            <div class="col sqs-col-3 span-3">
-                                                                <div class="sqs-block code-block sqs-block-code"
-                                                                    data-block-type="23"
-                                                                    id="block-yui_3_17_2_1_1606476383493_23729">
-                                                                    <div class="sqs-block-content preSlide slideIn"
-                                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.467368s;">
-                                                                        <h4 class="footer-h4 preFade fadeIn"
-                                                                            style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.473684s;">
-                                                                            Kontakt
-                                                                        </h4>
-                                                                        <a href="mailto:team@artandtech.space"
-                                                                            class="link"
-                                                                            tabindex="0">team@artandtech.space</a><br>
-                                                                        ARTandTECH.space<br>
-                                                                        Lindenstrße 11<br>
-                                                                        48431 Rheine
-                                                                    </div>
-                                                                </div>
-                                                                <div class="sqs-block code-block sqs-block-code"
-                                                                    data-block-type="23"
-                                                                    id="block-yui_3_17_2_1_1612364023146_20864">
-                                                                    <div class="sqs-block-content preSlide slideIn"
-                                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.48s;">
-                                                                        <h4 class="footer-h4 preFade fadeIn"
-                                                                            style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.486316s;">
-                                                                            Webseiten</h4>
-                                                                        <a href="https://projektlabor.org/" class="link"
-                                                                            target="_blank" tabindex="0">Projektlabor
-                                                                            Berufskolleg Rheine</a><br>
-                                                                        <a href="https://www.rheine.de/kultur-freizeit-tourismus/jugendkunstschule/index.html"
-                                                                            class="link" target="_blank"
-                                                                            tabindex="0">Jugendkunstschule Rheine</a>
-                                                                        <br>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col sqs-col-4 span-4">
-                                                                <div class="sqs-block code-block sqs-block-code"
-                                                                    data-block-type="23"
-                                                                    id="block-yui_3_17_2_1_1612379041305_14544">
-                                                                    <div class="sqs-block-content preSlide slideIn"
-                                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.492632s;">
-                                                                        <iframe width="100%" height="250"
-                                                                            frameborder="0" scrolling="no"
-                                                                            marginheight="0" marginwidth="0"
-                                                                            src="https://www.openstreetmap.org/export/embed.html?bbox=7.42840200662613%2C52.2772630507161%2C7.431298792362214%2C52.27860543822997&amp;layer=mapnik&amp;marker=52.277934249555585%2C7.429850399494171"
-                                                                            style="border: 1px solid black"
-                                                                            tabindex="0"></iframe>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="sqs-block horizontalrule-block sqs-block-horizontalrule"
-                                            data-block-type="47" id="block-yui_3_17_2_1_1606476200528_18144">
-                                            <div class="sqs-block-content preSlide slideIn"
-                                                style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.498947s;">
-                                                <hr>
-                                            </div>
-                                        </div>
-                                        <div class="row sqs-row" id="yui_3_17_2_1_1623681184785_274">
-                                            <div class="col sqs-col-3 span-3" id="yui_3_17_2_1_1623681184785_273">
-                                                <div class="sqs-block image-block sqs-block-image sqs-text-ready"
-                                                    data-block-type="5" id="block-yui_3_17_2_1_1613075269682_14425">
-                                                    <div class="sqs-block-content preSlide slideIn"
-                                                        id="yui_3_17_2_1_1623681184785_272"
-                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.505263s;">
-                                                        <div class="image-block-outer-wrapper layout-caption-hidden design-layout-inline combination-animation-site-default individual-animation-site-default individual-text-animation-site-default sqs-narrow-width animation-loaded"
-                                                            data-test="image-block-inline-outer-wrapper"
-                                                            id="yui_3_17_2_1_1623681184785_271">
-                                                            <figure class="
-                                                    sqs-block-image-figure
-                                                    intrinsic
-                                                    " style="max-width:100%;" id="yui_3_17_2_1_1623681184785_270">
-                                                                <a class="
-                                                       sqs-block-image-link
-                                                       " href="https://www.mkw.nrw/" target="_blank"
-                                                                    id="yui_3_17_2_1_1623681184785_269" tabindex="0">
-                                                                    <div style="padding-bottom: 50%; overflow: hidden; transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.511579s;"
-                                                                        class="image-block-wrapper has-aspect-ratio preSlide slideIn"
-                                                                        data-animation-role="image"
-                                                                        id="yui_3_17_2_1_1623681184785_268">
-                                                                        <noscript><img
-                                                                                src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112790317-ZEIWNV286WT532HL6LZX/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/AK_Kultur+und+Wissenschaft_Farbig_CMYK.png"
-                                                                                alt="AK_Kultur und Wissenschaft_Farbig_CMYK.png" /></noscript>
-                                                                        <img class="thumb-image loaded"
-                                                                            data-src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112790317-ZEIWNV286WT532HL6LZX/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/AK_Kultur+und+Wissenschaft_Farbig_CMYK.png"
-                                                                            data-image="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112790317-ZEIWNV286WT532HL6LZX/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/AK_Kultur+und+Wissenschaft_Farbig_CMYK.png"
-                                                                            data-image-dimensions="1000x500"
-                                                                            data-image-focal-point="0.5,0.5"
-                                                                            data-load="false"
-                                                                            data-image-id="60356816a82d711f06da8282"
-                                                                            data-type="image"
-                                                                            alt="AK_Kultur und Wissenschaft_Farbig_CMYK.png"
-                                                                            data-image-resolution="300w"
-                                                                            src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112790317-ZEIWNV286WT532HL6LZX/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/AK_Kultur+und+Wissenschaft_Farbig_CMYK.png?format=300w"
-                                                                            style="left: 0%; top: -0.182482%; width: 100%; height: 100.365%; position: absolute;">
-                                                                    </div>
-                                                                </a>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col sqs-col-3 span-3" id="yui_3_17_2_1_1623681184785_293">
-                                                <div class="sqs-block image-block sqs-block-image sqs-text-ready"
-                                                    data-block-type="5" id="block-yui_3_17_2_1_1606493471942_21876">
-                                                    <div class="sqs-block-content preSlide slideIn"
-                                                        id="yui_3_17_2_1_1623681184785_292"
-                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.517895s;">
-                                                        <div class="image-block-outer-wrapper layout-caption-hidden design-layout-inline combination-animation-site-default individual-animation-site-default individual-text-animation-site-default sqs-narrow-width animation-loaded"
-                                                            data-test="image-block-inline-outer-wrapper"
-                                                            id="yui_3_17_2_1_1623681184785_291">
-                                                            <figure class="
-                                                    sqs-block-image-figure
-                                                    intrinsic
-                                                    " style="max-width:1000px;" id="yui_3_17_2_1_1623681184785_290">
-                                                                <a class="
-                                                       sqs-block-image-link
-                                                       " href="https://www.rheine.de/" target="_blank"
-                                                                    id="yui_3_17_2_1_1623681184785_289" tabindex="0">
-                                                                    <div style="padding-bottom: 50%; overflow: hidden; transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.524211s;"
-                                                                        class="image-block-wrapper has-aspect-ratio preSlide slideIn"
-                                                                        data-animation-role="image"
-                                                                        id="yui_3_17_2_1_1623681184785_288">
-                                                                        <noscript><img
-                                                                                src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112480385-AQW0X36HZZPRBSLZLQ65/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/logo_rheine.png"
-                                                                                alt="logo_rheine.png" /></noscript>
-                                                                        <img class="thumb-image loaded"
-                                                                            data-src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112480385-AQW0X36HZZPRBSLZLQ65/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/logo_rheine.png"
-                                                                            data-image="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112480385-AQW0X36HZZPRBSLZLQ65/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/logo_rheine.png"
-                                                                            data-image-dimensions="1000x500"
-                                                                            data-image-focal-point="0.5,0.5"
-                                                                            data-load="false"
-                                                                            data-image-id="603566e01896e270aa54f3d5"
-                                                                            data-type="image" alt="logo_rheine.png"
-                                                                            data-image-resolution="300w"
-                                                                            src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112480385-AQW0X36HZZPRBSLZLQ65/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/logo_rheine.png?format=300w"
-                                                                            style="left: 0%; top: -0.182482%; width: 100%; height: 100.365%; position: absolute;">
-                                                                    </div>
-                                                                </a>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col sqs-col-3 span-3" id="yui_3_17_2_1_1623681184785_312">
-                                                <div class="sqs-block image-block sqs-block-image sqs-text-ready"
-                                                    data-block-type="5" id="block-yui_3_17_2_1_1606477385414_15950">
-                                                    <div class="sqs-block-content preSlide slideIn"
-                                                        id="yui_3_17_2_1_1623681184785_311"
-                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.530526s;">
-                                                        <div class="image-block-outer-wrapper layout-caption-hidden design-layout-inline combination-animation-site-default individual-animation-site-default individual-text-animation-site-default sqs-narrow-width animation-loaded"
-                                                            data-test="image-block-inline-outer-wrapper"
-                                                            id="yui_3_17_2_1_1623681184785_310">
-                                                            <figure class="
-                                                    sqs-block-image-figure
-                                                    intrinsic
-                                                    " style="max-width:1000px;" id="yui_3_17_2_1_1623681184785_309">
-                                                                <a class="
-                                                       sqs-block-image-link
-                                                       " href="https://www.kreis-steinfurt.de/kv_steinfurt/Home/"
-                                                                    target="_blank" id="yui_3_17_2_1_1623681184785_308"
-                                                                    tabindex="0">
-                                                                    <div style="padding-bottom: 50%; overflow: hidden; transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.536842s;"
-                                                                        class="image-block-wrapper has-aspect-ratio preSlide slideIn"
-                                                                        data-animation-role="image"
-                                                                        id="yui_3_17_2_1_1623681184785_307">
-                                                                        <noscript><img
-                                                                                src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112699712-VFY2FHQW6WYSAFGUHDBD/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/kreis_steinfurt_logo.png"
-                                                                                alt="kreis_steinfurt_logo.png" /></noscript>
-                                                                        <img class="thumb-image loaded"
-                                                                            data-src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112699712-VFY2FHQW6WYSAFGUHDBD/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/kreis_steinfurt_logo.png"
-                                                                            data-image="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112699712-VFY2FHQW6WYSAFGUHDBD/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/kreis_steinfurt_logo.png"
-                                                                            data-image-dimensions="1000x500"
-                                                                            data-image-focal-point="0.5,0.5"
-                                                                            data-load="false"
-                                                                            data-image-id="603567bbf3100a261afc04ff"
-                                                                            data-type="image"
-                                                                            alt="kreis_steinfurt_logo.png"
-                                                                            data-image-resolution="300w"
-                                                                            src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112699712-VFY2FHQW6WYSAFGUHDBD/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/kreis_steinfurt_logo.png?format=300w"
-                                                                            style="left: 0%; top: -0.182482%; width: 100%; height: 100.365%; position: absolute;">
-                                                                    </div>
-                                                                </a>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col sqs-col-3 span-3" id="yui_3_17_2_1_1623681184785_331">
-                                                <div class="sqs-block image-block sqs-block-image sqs-text-ready"
-                                                    data-block-type="5" id="block-yui_3_17_2_1_1606477385414_46560">
-                                                    <div class="sqs-block-content preSlide slideIn"
-                                                        id="yui_3_17_2_1_1623681184785_330"
-                                                        style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.543158s;">
-                                                        <div class="image-block-outer-wrapper layout-caption-hidden design-layout-inline combination-animation-site-default individual-animation-site-default individual-text-animation-site-default sqs-narrow-width animation-loaded"
-                                                            data-test="image-block-inline-outer-wrapper"
-                                                            id="yui_3_17_2_1_1623681184785_329">
-                                                            <figure class="
-                                                    sqs-block-image-figure
-                                                    intrinsic
-                                                    " style="max-width:1000px;" id="yui_3_17_2_1_1623681184785_328">
-                                                                <a class="
-                                                       sqs-block-image-link
-                                                       " href="https://www.berufskolleg-rheine.de/de/" target="_blank"
-                                                                    id="yui_3_17_2_1_1623681184785_327" tabindex="0">
-                                                                    <div style="padding-bottom: 50%; overflow: hidden; transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.549474s;"
-                                                                        class="image-block-wrapper has-aspect-ratio preSlide slideIn"
-                                                                        data-animation-role="image"
-                                                                        id="yui_3_17_2_1_1623681184785_326">
-                                                                        <noscript><img
-                                                                                src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112580482-5LXWK470FXX53D9CUW9I/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/bkr_logo.png"
-                                                                                alt="bkr_logo.png" /></noscript>
-                                                                        <img class="thumb-image loaded"
-                                                                            data-src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112580482-5LXWK470FXX53D9CUW9I/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/bkr_logo.png"
-                                                                            data-image="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112580482-5LXWK470FXX53D9CUW9I/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/bkr_logo.png"
-                                                                            data-image-dimensions="1000x500"
-                                                                            data-image-focal-point="0.5,0.5"
-                                                                            data-load="false"
-                                                                            data-image-id="60356743468be377796696b5"
-                                                                            data-type="image" alt="bkr_logo.png"
-                                                                            data-image-resolution="300w"
-                                                                            src="https://images.squarespace-cdn.com/content/v1/5eb67662694aa05df3b11cfd/1614112580482-5LXWK470FXX53D9CUW9I/ke17ZwdGBToddI8pDm48kPj2DCVms7d7tLeg9lnusy0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcVSLZ3pDcs6UkbaaM_GEiuhAj8XdnoW7ZS3eorGzPJ4rmKrNseFoUIch_0M0QXBgV/bkr_logo.png?format=300w"
-                                                                            style="left: 0%; top: -0.182482%; width: 100%; height: 100.365%; position: absolute;">
-                                                                    </div>
-                                                                </a>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="sqs-block horizontalrule-block sqs-block-horizontalrule"
-                                            data-block-type="47" id="block-yui_3_17_2_1_1606476383493_26882">
-                                            <div class="sqs-block-content preSlide slideIn"
-                                                style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.555789s;">
-                                                <hr>
-                                            </div>
-                                        </div>
-                                        <div class="sqs-block socialaccountlinks-v2-block sqs-block-socialaccountlinks-v2 sqs-col-6 span-6 float float-right"
-                                            data-block-type="54" id="block-01ec69eee63f9df36c9b">
-                                            <div class="sqs-block-content preSlide slideIn"
-                                                style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.562105s;">
-                                                <div
-                                                    class="sqs-svg-icon--outer social-icon-alignment-right social-icons-color- social-icons-size-small social-icons-style-regular ">
-                                                    <nav class="sqs-svg-icon--list">
-                                                        <a href="https://www.instagram.com/projektlabor/"
-                                                            target="_blank"
-                                                            class="sqs-svg-icon--wrapper instagram-unauth"
-                                                            aria-label="Instagram" tabindex="0">
-                                                            <div>
-                                                                <svg class="sqs-svg-icon--social" viewBox="0 0 64 64">
-                                                                    <use class="sqs-use--icon"
-                                                                        xlink:href="#instagram-unauth-icon"></use>
-                                                                    <use class="sqs-use--mask"
-                                                                        xlink:href="#instagram-unauth-mask"></use>
-                                                                </svg>
-                                                            </div>
-                                                        </a>
-                                                        <a href="https://www.youtube.com/channel/UC_GKfO8cC9Fp-stWUb8YJUg"
-                                                            target="_blank" class="sqs-svg-icon--wrapper youtube-unauth"
-                                                            aria-label="YouTube" tabindex="0">
-                                                            <div>
-                                                                <svg class="sqs-svg-icon--social" viewBox="0 0 64 64">
-                                                                    <use class="sqs-use--icon"
-                                                                        xlink:href="#youtube-unauth-icon"></use>
-                                                                    <use class="sqs-use--mask"
-                                                                        xlink:href="#youtube-unauth-mask"></use>
-                                                                </svg>
-                                                            </div>
-                                                        </a>
-                                                        <a href="https://github.com/Projektlabor-Rheine" target="_blank"
-                                                            class="sqs-svg-icon--wrapper github-unauth"
-                                                            aria-label="GitHub" tabindex="0">
-                                                            <div>
-                                                                <svg class="sqs-svg-icon--social" viewBox="0 0 64 64">
-                                                                    <use class="sqs-use--icon"
-                                                                        xlink:href="#github-unauth-icon"></use>
-                                                                    <use class="sqs-use--mask"
-                                                                        xlink:href="#github-unauth-mask"></use>
-                                                                </svg>
-                                                            </div>
-                                                        </a>
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="sqs-block html-block sqs-block-html" data-block-type="2"
-                                            id="block-yui_3_17_2_1_1606421077494_39274">
-                                            <div class="sqs-block-content preSlide slideIn"
-                                                style="transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.568421s;">
-                                                <p class="preFade fadeIn"
-                                                    style="white-space: pre-wrap; transition-timing-function: ease; transition-duration: 0.6s; transition-delay: 0.574737s;">©2020-2021 ARTandTECH.space All rights reserved.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </footer>
 
         </div>
 
@@ -562,6 +171,19 @@
 
 
     </div>
+
+    <!-- ATS-Footer full height-->
+    <script>
+        var frame = document.getElementById("footerframe");
+          
+        frame.onload = function() {
+            frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+           
+            frame.style.width = frame.contentWindow.document.body.scrollWidth+'px';  
+        }
+    </script>
+
+
     <script type="module" src="index.js"></script>
     <script type="module" src="scripts/mjitsi.js"></script>
 </body>
