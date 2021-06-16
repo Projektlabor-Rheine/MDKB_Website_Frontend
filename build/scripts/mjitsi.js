@@ -19,18 +19,20 @@ const options = {
         startWithVideoMuted: true,
         disableProfile: true,
         hideLobbyButton: true,
-
+        disable1On1Mode: null,
     }
 };
-// const api = new JitsiMeetExternalAPI(domain, options);
 
-// api.addListener("videoConferenceJoined", videoJoined);
+
+const api = new JitsiMeetExternalAPI(domain, options);
+
+api.addListener("videoConferenceJoined", videoJoined);
 
 
 function videoJoined(event){
-    //console.log("Video Joined");
+    console.log("Video Joined");
 
-    partis = api.getParticipantsInfo();
+    let partis = api.getParticipantsInfo();
 
     for (const user of partis) {
         if (user.displayName == "Reinhold Messner"){
