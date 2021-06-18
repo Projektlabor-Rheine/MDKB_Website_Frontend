@@ -11,10 +11,17 @@ var isObject = pkt => typeof pkt === "object" && pkt.constructor.name === "Objec
 //Global Vars
 var countdowntimer;
 var countdowntime;
+var getPiStatus;
 
 var mName;
 var mUuid;
 var mPos;
+
+
+function consti(getpistatus){
+    getPiStatus = getpistatus;
+}
+
 
 // Contains user-stuff.
 const userutils = {
@@ -255,6 +262,7 @@ const controllerutils = {
         
         //Start counter
         countdowntime = controller.time;
+        controllerutils.startCountdown();
         
         return keyEnable;
 
@@ -295,8 +303,10 @@ const controllerutils = {
     },
 
     startCountdown: () => {
-        clearInterval(countdowntimer);
-        countdowntimer = setInterval(controllerutils._countdown, 1000, countdowntime);
+        if(getPiStatus()){
+            clearInterval(countdowntimer);
+            countdowntimer = setInterval(controllerutils._countdown, 1000, countdowntime);
+        }
     },
 
     stopCountdown: () => {
@@ -368,4 +378,6 @@ const profileutils = {
 }
 
 
-export {controllerutils, userutils, achieveutils, profileutils, countdowntimer}
+
+
+export {controllerutils, userutils, achieveutils, profileutils, countdowntimer, consti}

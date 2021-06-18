@@ -1,11 +1,12 @@
 
-import {controllerutils, userutils, achieveutils, profileutils, countdowntimer} from "./scripts/gamesync_handler.js";
+import {controllerutils, userutils, achieveutils, profileutils, countdowntimer, consti} from "./scripts/gamesync_handler.js";
 
 import {StoplineEvent, DriverLostConnEvent, DriverRejoin, DriverRemove, YoureDriver, onPiConnectedEvent, onPiDisconnectedEvent, setTimer} from "./scripts/gameevent_handler.js"
 
 
 //Backwards method
 setTimer(countdowntimer); // Countdowntimer for eventhandler
+consti(getPiStatus);
 
 // Globel Vars
 var keyEnable = false;
@@ -42,6 +43,10 @@ function getUUIDCookie(){
         }
     }
     return "";
+}
+
+function getPiStatus(){
+    return rpiconnected;
 }
 
 /**

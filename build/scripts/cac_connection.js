@@ -42,7 +42,9 @@ class CACConnection{
      */
     _onConnect(_){
         //Disable Lost connection
-        $("#inlineventholder").animate({opacity: 0}, 200, "swing");
+        $(this._overlay).animate({opacity: 0, complete: () => {
+            $(this._overlay).addClass("hidden");
+        }}, 200, "swing");
 
 
         // if (uuid == "") {
@@ -60,7 +62,11 @@ class CACConnection{
 
         //Enable Lost connection
         //Setting TEXT OTOd
-        $("#inlineventholder").animate({opacity: 1}, 200, "swing");
+        $(this._overlay).removeClass("hidden");
+        $(this._overlay).animate({opacity: 1}, 200, "swing");
+
+        
+
 
         // Restarts the connection
         setTimeout(this.startConnection.bind(this), 2000);

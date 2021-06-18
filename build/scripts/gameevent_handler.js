@@ -15,6 +15,7 @@ class Event {
 
 
     _inlineHolder = "#inlineventholder";
+    _overlay = "#over_jitsi_overlay";
 
     /**
      * 
@@ -75,11 +76,14 @@ class Event {
     }
 
     hideEvent() {
-        $(this._inlineHolder).animate({opacity: 0}, 200, "swing");
+        $(this._overlay).animate({opacity: 0}, {complete: () => {
+            $(this._overlay).addClass("hidden");
+        }, duration: 200});
     }
 
     showEvent() {
-        $(this._inlineHolder).animate({opacity: 1}, 200, "swing");
+        $(this._overlay).removeClass("hidden");
+        $(this._overlay).animate({opacity: 1}, 200);
     }
 
 }
@@ -88,9 +92,28 @@ class Event {
 
 class StoplineEvent extends Event {
 
-    constructor (timeout){
-        super(timeout, true);
+    constructor (){
+        super(30000, true);
         this.event_msg = "Ende Bro, weiter nich ;)";
+    }
+
+    callEvent(data) {
+        let inlineHolder = $(this._inlineHolder);
+        inlineHolder.text(this.event_msg);
+        
+        //Validation
+        if(! "on" in data || typeof data.on === "boolean"){
+            console.log("Stopline event validation failed");
+            return;
+        }
+
+        //Action
+        if(data.on){
+            this.showEvent();
+        }else {
+            this.hideEvent();
+        }
+            
     }
 
 }
